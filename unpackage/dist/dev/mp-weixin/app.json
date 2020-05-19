@@ -14,7 +14,9 @@
     "pages/authorization/authorization",
     "pages/commodity_details/commodity_details",
     "pages/allOrders/allOrders",
-    "pages/h5/h5"
+    "pages/h5/h5",
+    "pages/login/login",
+    "pages/register/register"
   ],
   "subPackages": [],
   "window": {

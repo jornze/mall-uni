@@ -1,0 +1,112 @@
+.loginArea {
+  width: 100%;
+  height: 100%;
+}
+.loginArea .navBar {
+    height: 200rpx;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+            justify-content: space-between;
+}
+.loginArea .navBar .img {
+      width: 22rpx;
+      height: 38rpx;
+      padding: 10rpx;
+      margin-left: 30rpx;
+}
+.loginArea .loginTitle {
+    width: 640rpx;
+    padding: 0 55rpx;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+    padding-bottom: 30rpx;
+}
+.loginArea .loginTitle .login {
+      position: relative;
+}
+.loginArea .loginTitle .login .text {
+        font-size: 44rpx;
+        font-weight: bold;
+        color: #333333;
+        line-height: 44rpx;
+}
+.loginArea .loginTitle .login .line {
+        height: 10rpx;
+        width: 100%;
+        position: absolute;
+        border-radius: 5px;
+        background: #63BBFF;
+        bottom: -10rpx;
+}
+.loginArea .redTip {
+    width: 640rpx;
+    padding: 0 55rpx;
+    color: red;
+}
+.loginArea .bgArea {
+    width: 640rpx;
+    height: 80rpx;
+    background: #eeeeee;
+    border-radius: 20rpx;
+    margin: auto;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+            justify-content: space-between;
+    margin-top: 30rpx;
+}
+.loginArea .bgArea .title {
+      font-size: 38rpx;
+      font-weight: bold;
+      color: #333333;
+      line-height: 38rpx;
+      margin-left: 30rpx;
+}
+.loginArea .bgArea .uni-input {
+      width: 300rpx;
+      height: 50rpx;
+      line-height: 50rpx;
+      background: #eeeeee;
+      outline: none;
+      border: 0;
+      font-size: 32rpx;
+}
+.loginArea .bgArea input::-webkit-input-placeholder {
+      color: #CFCFCF;
+}
+.loginArea .bgArea input::-moz-input-placeholder {
+      color: #CFCFCF;
+}
+.loginArea .bgArea input::-ms-input-placeholder {
+      color: #CFCFCF;
+}
+.loginArea .btnArea {
+    width: 640rpx;
+    height: 100rpx;
+    background: #63bbff;
+    border-radius: 20rpx;
+    border: 0;
+    color: #fff;
+}
+.loginArea .loginBtn {
+    margin-top: 50rpx;
+}
+.loginArea .registerBtn {
+    margin-top: 200rpx;
+}
+

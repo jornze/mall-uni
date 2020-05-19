@@ -52,22 +52,6 @@ export default {
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-		// uniHttp({//注册
-		//   "path":"/member/api/register",
-		//   "method":"POST",
-		//   "data":{
-		// 	  "memAccount":"zq",
-		// 	  "memPassword":"111",
-		// 	  "inviteCode":"123456",
-		// 	  "sourceChannel":"1",
-		// 	  "verifyCode":"1111",
-		// 	  "nickname":"zq",
-		// 	  "inviteMemAccount":"superman"
-		//   },
-		// }).then(res=>{
-		//   console.log(res);
-	 //    })
-	  
 	  this.tabsgoodsVoList=[this.goodsVo1,this.goodsVo2,this.goodsVo3,this.goodsVo4,this.goodsVo5];
 	  uni.showLoading({
 	  	title:"加载中...",
@@ -84,11 +68,9 @@ export default {
 		}).then(res=>{
 			uni.hideLoading();
 			let goodsTabsdata=res;
-			if (goodsTabsdata.data.data.errorCode == "200") {
-				this.goodsTabsVoList = goodsTabsdata.data.data.goodsTabsVoList;
-				if (this.goodsTabsVoList.length!=0) {
-					this.getgoodsVo(0);
-				}
+			this.goodsTabsVoList = goodsTabsdata.goodsTabsVoList;
+			if (this.goodsTabsVoList.length!=0) {
+				this.getgoodsVo(0);
 			}
 		})
  },
@@ -164,37 +146,26 @@ export default {
 			}).then(res=>{
 				this.repeatedLoading= true;
 				let goodslist=res;
-				if (goodslist.data.data.errorCode == "200") {
-					if (goodslist.data.data.goodsVoList.length > 0) {
-						for (var i = 0; i < goodslist.data.data.goodsVoList.length; i++) {
-						  var img = getApp().globalData.imgUrl + "/" + goodslist.data.data.goodsVoList[i].goodsPic;
-						  goodslist.data.data.goodsVoList[i].goodsPic = img;
-						}
-						this.tabsgoodsVoList[index].push(...goodslist.data.data.goodsVoList);
-						this.currentgoodsVo=this.tabsgoodsVoList[index];
-					}else{
-						this.isloadedend=true;
-						console.log('isend');
+				if (goodslist.goodsVoList.length > 0) {
+					for (var i = 0; i < goodslist.goodsVoList.length; i++) {
+					  var img = getApp().globalData.imgUrl + "/" + goodslist.goodsVoList[i].goodsPic;
+					  goodslist.goodsVoList[i].goodsPic = img;
 					}
-				  //隐藏导航条加载动画。
-				  // #ifdef MP-WEIXIN
-				  uni.hideNavigationBarLoading();
-				  // #endif
-				  uni.stopPullDownRefresh();
-				} else {
-				  uni.showModal({
-					title: '提示',
-					content: res.data.msg
-				  });
+					this.tabsgoodsVoList[index].push(...goodslist.goodsVoList);
+					this.currentgoodsVo=this.tabsgoodsVoList[index];
+				}else{
+					this.isloadedend=true;
+					console.log('isend');
 				}
+				 //隐藏导航条加载动画。
+				 // #ifdef MP-WEIXIN
+				 uni.hideNavigationBarLoading();
+				 // #endif
+				 uni.stopPullDownRefresh();
 				uni.hideLoading();
 			}).catch(err=>{
 				this.repeatedLoading= true;
 				uni.hideLoading();
-				uni.showModal({
-				  title: '提示',
-				  content: "获取数据失败,请重试!"
-				});
 			})
 		}else{
 			//this.repeatedLoading=true;

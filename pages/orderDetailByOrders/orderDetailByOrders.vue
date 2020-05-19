@@ -1,8 +1,5 @@
 <template>
 <view>
-<view> 
-  <loading :hidden="hidden">加载中...</loading> 
-</view>
 <view class="order-header">
   <image src="/static/images/wait.png" v-if="orderStatus==1"></image>
   <image src="/static/images/Collect.png" v-if="orderStatus==2||orderStatus==3||orderStatus==4||orderStatus==5||orderStatus==6"></image>
@@ -24,7 +21,7 @@
     <view></view>
     <text>收货地址</text>
   </view> 
-  <view @tap="orderStatus==1?'address':''">
+  <view @tap="addressFun" >
     <image src="/static/images/SP_add.png"></image>
     <view v-if="address.phone">
       <view>
@@ -33,8 +30,8 @@
       </view>
       <text>{{address.province}}{{address.city}}{{address.area}}{{address.address}}</text>
     </view>
-    <view v-if="!address.phone">添加收货地址</view>
-    <image src="/static/images/right.png"></image>
+    <view v-if="!address.phone" @tap="addressFun">添加收货地址</view>
+    <image src="/static/images/right.png" v-show="orderStatus==1"></image>
   </view>
   <image src="/static/images/SP_add_bg.png"></image>
 </view>
@@ -91,11 +88,10 @@
 </template>
 
 <script>
-
+import {uniHttp} from "../../apis/api.js"
 export default {
   data() {
     return {
-      hidden: false,
       orderVoList: '',
       money: '',
       address: '',
@@ -119,90 +115,11 @@ export default {
    */
   onLoad: function (options) {
     var that = this;
-    this.setData({
-      parendNo: options.parendNo,
-      supId: options.supId,
-      orderStatus: options.orderStatus
-    });
-
-    if (this.orderStatus == 7 || this.orderStatus == 1) {
-      wx.request({
-        url: getApp().globalData.url3 + getApp().globalData.getOrderDetailByCondition,
-        data: {
-          parendNo: that.parendNo,
-          supId: that.supId,
-          category: 0
-        },
-        header: {
-          aid: 126
-        },
-        method: 'post',
-        dataType: 'json',
-        responseType: 'text',
-        success: function (res) {
-          if (res.data.data.orderTYVo.orderVoList.length > 0) {
-            for (var i = 0; i < res.data.data.orderTYVo.orderVoList.length; i++) {
-              var img = getApp().globalData.imgUrl + "/" + res.data.data.orderTYVo.orderVoList[i].skuImg;
-              res.data.data.orderTYVo.orderVoList[i].skuImg = img;
-              res.data.data.orderTYVo.orderVoList[i].marketPrice = res.data.data.orderTYVo.orderVoList[i].marketPrice.toFixed(2);
-            }
-
-            res.data.data.orderTYVo.orderVoList[0].totalAmount = res.data.data.orderTYVo.orderVoList[0].totalAmount.toFixed(2);
-            that.setData({
-              orderVoList: res.data.data.orderTYVo.orderVoList,
-              address: res.data.data.orderTYVo.orderDetailVo,
-              money: res.data.data.orderTYVo.orderVoList[0].totalAmount,
-              hidden: true
-            });
-
-            if (res.data.data.orderTYVo.orderDetailVo.addressId) {
-              that.setData({
-                chooseId: res.data.data.orderTYVo.orderDetailVo.addressId
-              });
-            }
-
-            that.timer();
-          }
-        },
-        fail: function (res) {},
-        complete: function (res) {}
-      });
-    } else {
-      wx.request({
-        url: getApp().globalData.url3 + getApp().globalData.getOrderDetailByCondition,
-        data: {
-          parendNo: that.parendNo,
-          supId: that.supId,
-          category: 1
-        },
-        header: {
-          aid: 126
-        },
-        method: 'post',
-        dataType: 'json',
-        responseType: 'text',
-        success: function (res) {
-          if (res.data.data.orderTYVo.orderVoList.length > 0) {
-            for (var i = 0; i < res.data.data.orderTYVo.orderVoList.length; i++) {
-              var img = getApp().globalData.imgUrl + "/" + res.data.data.orderTYVo.orderVoList[i].skuImg;
-              res.data.data.orderTYVo.orderVoList[i].skuImg = img;
-              res.data.data.orderTYVo.orderVoList[i].marketPrice = res.data.data.orderTYVo.orderVoList[i].marketPrice.toFixed(2);
-            }
-
-            res.data.data.orderTYVo.orderVoList[0].totalAmount = res.data.data.orderTYVo.orderVoList[0].totalAmount.toFixed(2);
-            that.setData({
-              orderVoList: res.data.data.orderTYVo.orderVoList,
-              address: res.data.data.orderTYVo.orderDetailVo,
-              money: res.data.data.orderTYVo.orderVoList[0].totalAmount,
-              hidden: true
-            });
-            that.timer();
-          }
-        },
-        fail: function (res) {},
-        complete: function (res) {}
-      });
-    }
+    that.parendNo=options.parendNo;
+    that.supId=options.supId;
+    that.orderStatus=options.orderStatus;
+    this.getOrderDetail()
+	
   },
 
   /**
@@ -214,28 +131,24 @@ export default {
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    wx.hideShareMenu();
+	// #ifdef MP-WEIXIN
+    uni.hideShareMenu();
+	// #endif
     this.pageLoading = false;
     var that = this;
-
+	console.log('---',this.chooseId,'--------')
     if (this.chooseId) {
-      wx.request({
-        url: getApp().globalData.url1 + getApp().globalData.getAddressByMemberId + that.chooseId,
-        data: '',
+     uniHttp({
+        path:getApp().globalData.getAddressByMemberId + that.chooseId,
         header: {
-          aid: 110
+          aid: 110,
+		 
         },
         method: 'GET',
-        dataType: 'json',
-        responseType: 'text',
-        success: function (res) {
-          that.setData({
-            address: res.data.data.memberAddrVo
-          });
-        },
-        fail: function (res) {},
-        complete: function (res) {}
-      });
+      }).then(res=>{
+		  that.address=res.memberAddrVo
+		  console.log(that.address)
+	  })
     }
   },
 
@@ -250,10 +163,9 @@ export default {
   onUnload: function () {
     clearInterval(this.timers);
     var that = this;
-
-    if (this.orderStatus == 1) {
-      wx.request({
-        url: getApp().globalData.url3 + getApp().globalData.supplementOrderMoney,
+    if (this.orderStatus == 1) {//补充订单金额
+      uniHttp({
+        path:getApp().globalData.supplementOrderMoney,
         data: {
           totalPayAmout: that.money,
           parendNo: that.parendNo,
@@ -265,18 +177,16 @@ export default {
           area: that.address.area,
           address: that.address.address,
           addressId: that.chooseId,
-          wxMemId: getApp().globalData.memId
+          wxMemId: that.$store.getters['login/get_userInfo'].id
         },
         header: {
-          aid: 124
+          aid: 124,
+		  
         },
         method: 'put',
-        dataType: 'json',
-        responseType: 'text',
-        success: function (res) {},
-        fail: function (res) {},
-        complete: function (res) {}
-      });
+      }).then(res=>{
+		  
+	  })
     }
   },
 
@@ -295,7 +205,60 @@ export default {
    */
   onShareAppMessage: function () {},
   methods: {
-    timer: function () {
+	getOrderDetail(){
+		uni.showLoading({
+			title:"加载中...",
+			mask:true
+		});
+		let type=(this.orderStatus==7 || this.orderStatus==1)?0:1;//01
+		uniHttp({
+			path:getApp().globalData.getOrderDetailByCondition,
+			data: {
+			  parendNo: this.parendNo,
+			  supId: this.supId,
+			  category: type
+			},
+			header: {
+			  aid: 126,
+			 
+			},
+			method: 'post',
+		}).then(res=>{
+		  if (res.orderTYVo.orderVoList.length > 0) {
+			for (var i = 0; i < res.orderTYVo.orderVoList.length; i++) {
+			  var img = getApp().globalData.imgUrl + "/" + res.orderTYVo.orderVoList[i].skuImg;
+			  res.orderTYVo.orderVoList[i].skuImg = img;
+			  res.orderTYVo.orderVoList[i].marketPrice = res.orderTYVo.orderVoList[i].marketPrice.toFixed(2);
+			}
+		console.log(res.orderTYVo.orderDetailVo)
+			res.orderTYVo.orderVoList[0].totalAmount = res.orderTYVo.orderVoList[0].totalAmount.toFixed(2);
+			this.orderVoList=res.orderTYVo.orderVoList;
+			this.address=res.orderTYVo.orderDetailVo;
+			this.money=res.orderTYVo.orderVoList[0].totalAmount;
+			if (res.orderTYVo.orderDetailVo.addressId) {//addressId
+			  this.chooseId=res.orderTYVo.orderDetailVo.addressId
+			}else{
+				this.getInitAdress();
+			}
+		
+			uni.hideLoading()
+			this.timer();
+		  }
+		})
+	},
+	getInitAdress:function(){//109 获取默认地址
+	  	uniHttp({
+	  		path:'/member/api/memberInternal/getDefaultAddress/'+ this.$store.getters['login/get_userInfo'].id, //this.$store.getters['login/get_userInfo'].id;
+	  		header:{
+	  			aid:109,
+				
+	  		}
+	  	}).then(res=>{
+	  		this.address=res;
+	  		this.chooseId=res.id;
+	  	})
+	  },
+    timer: function () {//支付倒计时
       var that = this;
       var createTime = new Date(this.orderVoList[0].createTime.replace(/-/g, "/"));
       var leftTime = new Date().getTime() - createTime.getTime();
@@ -303,16 +266,15 @@ export default {
       this.timers = setInterval(function () {
         var minute = parseInt(leftTime / 1000 / 60 % 60, 10);
         var second = parseInt(leftTime / 1000 % 60, 10);
-        that.setData({
-          'time.m': that.checkTime(minute),
-          'time.s': that.checkTime(second)
-        });
+        that.time={
+			m: that.checkTime(minute),
+			s: that.checkTime(second)	
+		}
         leftTime = leftTime - 1000;
-
         if (leftTime < 0) {
           if (that.orderStatus == 1) {
-            wx.request({
-              url: getApp().globalData.url3 + getApp().globalData.orderClosureByParendNo,
+            uniHttp({
+              path:getApp().globalData.orderClosureByParendNo,
               data: {
                 totalPayAmout: that.money,
                 parendNo: that.parendNo,
@@ -323,38 +285,31 @@ export default {
                 city: that.address.city,
                 area: that.address.area,
                 address: that.address.address,
-                wxMemId: getApp().globalData.memId
+                wxMemId: that.$store.getters['login/get_userInfo'].id
               },
               header: {
-                aid: 123
+                aid: 123,
+				
               },
               method: 'put',
-              dataType: 'json',
-              responseType: 'text',
-              success: function (res) {
-                if (res.data.data.errorCode == 200) {
-                  wx.showToast({
-                    title: '订单已取消',
-                    mask: true,
-                    success: function (res) {
-                      that.setData({
-                        orderStatus: 7
-                      });
-                      clearInterval(that.timers);
-                    },
-                    fail: function (res) {},
-                    complete: function (res) {}
-                  });
-                }
-              },
-              fail: function (res) {},
-              complete: function (res) {}
-            });
+            }).then(res=>{
+				if (res.errorCode == 200) {
+				  uni.showToast({
+				    title: '订单已取消',
+				    success: function (res) {
+				      that.orderStatus=7;
+				      clearInterval(that.timers);
+				    },
+				    fail: function (res) {},
+				    complete: function (res) {}
+				  });
+				}
+			})
           }
         }
       }, 1000);
     },
-    checkTime: function (i) {
+    checkTime: function (i) {//时间格式化
       if (i < 10) {
         i = "0" + i;
       }
@@ -362,76 +317,70 @@ export default {
       return i;
     },
 
-    addressFun() {
-      if (!this.pageLoading) {
+    addressFun() {//收货地址
+		
+      if (!this.pageLoading && this.orderStatus==1) {
         this.pageLoading = true;
-        wx.navigateTo({
+        uni.navigateTo({
           url: '/pages/addressManagement/addressManagement?id=' + this.chooseId + '&where=1'
         });
       }
     },
 
-    commodity_details: function (e) {
+    commodity_details: function (e) {//查看商品详情
       var that = this;
-      wx.request({
-        url: getApp().globalData.url2 + getApp().globalData.getGoodsStatusById + e.currentTarget.dataset.goodsid,
-        data: '',
+      uniHttp({
+        path:getApp().globalData.getGoodsStatusById + e.currentTarget.dataset.goodsid,
         header: {
-          aid: 130
+          aid: 130,
+		 
         },
         method: 'GET',
-        dataType: 'json',
-        responseType: 'text',
-        success: function (res) {
-          if (res.data.data.goodsVo.goodsStatus == 4) {
-            wx.showToast({
-              title: '该商品已下架',
-              mask: true
-            });
-          } else {
-            if (!that.pageLoading) {
-              that.pageLoading = true;
-              wx.navigateTo({
-                url: '/pages/commodity_details/commodity_details?goodsId=' + e.currentTarget.dataset.goodsid
-              });
-            }
-          }
-        },
-        fail: function (res) {},
-        complete: function (res) {}
-      });
+      }).then(res=>{
+		  console.log(res)
+		  if (res.goodsVo.goodsStatus == 4) {
+		    uni.showToast({
+		      title: '该商品已下架',
+		    });
+		  } else {
+		    if (!that.pageLoading) {
+		      that.pageLoading = true;
+		      uni.navigateTo({
+		        url: '/pages/commodity_details/commodity_details?goodsId=' + e.currentTarget.dataset.goodsid
+		      });
+		    }
+		  }
+	  })
     },
 
-    remind() {
-      wx.showToast({
+    remind() {//提醒发货
+      uni.showToast({
         title: '已提醒发货',
-        mask: true,
         success: function (res) {},
         fail: function (res) {},
         complete: function (res) {}
       });
     },
 
-    ToEvaluated() {
-      wx.showToast({
+    ToEvaluated() {//去评价
+      uni.showToast({
         title: '暂无评价功能',
-        mask: true,
         icon: 'none',
         success: function (res) {},
         fail: function (res) {},
         complete: function (res) {}
       });
     },
-
-    cancelOrder() {
+    cancelOrder() {//取消订单
       var that = this;
-      wx.showModal({
+      uni.showModal({
         title: '提示',
         content: '确定取消订单',
         success: function (res) {
           if (res.confirm) {
-            wx.request({
-              url: getApp().globalData.url3 + getApp().globalData.orderClosureByParendNo,
+			  console.log('cancel')
+            uniHttp({
+              path: getApp().globalData.orderClosureByParendNo,
               data: {
                 totalPayAmout: that.money,
                 parendNo: that.parendNo,
@@ -443,44 +392,37 @@ export default {
                 area: that.address.area,
                 address: that.address.address,
                 addressId: that.chooseId,
-                wxMemId: getApp().globalData.memId
+                wxMemId: that.$store.getters['login/get_userInfo'].id
               },
               header: {
-                aid: 123
+                aid: 123,
+				
               },
               method: 'put',
-              dataType: 'json',
-              responseType: 'text',
-              success: function (res) {
-                if (res.data.data.errorCode == 200) {
-                  wx.showToast({
-                    title: '订单已取消',
-                    mask: true,
-                    success: function (res) {
-                      that.setData({
-                        orderStatus: 7
-                      });
-                      clearInterval(that.timers);
-                    },
-                    fail: function (res) {},
-                    complete: function (res) {}
-                  });
-                }
-              },
-              fail: function (res) {},
-              complete: function (res) {}
-            });
+             
+            }).then(res=>{
+				if (res.errorCode == 200) {
+				  uni.showToast({
+				    title: '订单已取消',
+				    success: function (res) {
+				      that.orderStatus=7
+				      clearInterval(that.timers);
+				    },
+				    fail: function (res) {},
+				    complete: function (res) {}
+				  });
+				}
+			})
           } else if (res.cancel) {}
         }
       });
     },
 
-    ToOrder() {
+    ToOrder() {//支付
       var that = this;
-
       if (this.address.phone) {
-        wx.request({
-          url: getApp().globalData.url3 + getApp().globalData.createUnifiedOrder,
+        uniHttp({
+          path:getApp().globalData.createUnifiedOrder,
           data: {
             totalPayAmout: that.money,
             parendNo: that.parendNo,
@@ -492,162 +434,128 @@ export default {
             area: that.address.area,
             address: that.address.address,
             addressId: that.chooseId,
-            wxMemId: getApp().globalData.memId
+            wxMemId: that.$store.getters['login/get_userInfo'].id
           },
           header: {
-            aid: 121
+            aid: 121,
           },
-          method: 'post',
-          dataType: 'json',
-          responseType: 'text',
-          success: function (res) {
-            if (res.data.data.prepayId) {
-              wx.request({
-                url: getApp().globalData.url3 + getApp().globalData.generateSignature,
-                data: {
-                  prepayId: res.data.data.prepayId
-                },
-                header: {
-                  aid: 122
-                },
-                method: 'post',
-                dataType: 'json',
-                responseType: 'text',
-                success: function (res) {
-                  if (res.data.data.sign) {
-                    wx.requestPayment({
-                      timeStamp: res.data.data.timeStamp,
-                      nonceStr: res.data.data.nonceStr,
-                      package: res.data.data.package,
-                      signType: 'MD5',
-                      paySign: res.data.data.sign,
-                      success: function (res) {
-                        clearInterval(that.timers);
-                        that.setData({
-                          orderStatus: 2
-                        });
-                        wx.showToast({
-                          title: '支付成功',
-                          mask: true
-                        });
-                      },
-                      fail: function (error) {},
-                      complete: function (res) {}
-                    });
-                  }
-                }
-              });
-            } else {
-              wx.showModal({
-                title: '提示',
-                content: '订单异常，请重新下单'
-              });
-            }
-          }
-        });
+          method: 'post', 
+        }).then(res=>{
+			if (res.prepayId) {
+			   uniHttp({
+			    path: getApp().globalData.generateSignature,
+			    data: {
+			      prepayId: res.prepayId
+			    },
+			    header: {
+			      aid: 122,
+				  
+			    },
+			    method: 'post',
+			  }).then(res=>{
+				  if (res.sign) {
+				    uni.requestPayment({
+				      timeStamp: res.timeStamp,
+				      nonceStr: res.nonceStr,
+				      package: res.package,
+				      signType: 'MD5',
+				      paySign: res.sign,
+				      success: function (res) {
+				        clearInterval(that.timers);
+				        that.orderStatus=2;
+				        uni.showToast({
+				          title: '支付成功',
+				        });
+				      }
+				    });
+				  }
+			  })
+			} else {
+			  uni.showModal({
+			    title: '提示',
+			    content: '订单异常，请重新下单'
+			  });
+			}
+		})
       } else if (!this.address.phone) {
-        wx.showModal({
+        uni.showModal({
           title: '提示',
-          content: '请完善收货信息'
+          content: '请完善收货信息',
+		  success: function (res) {
+			  if (res.confirm) {
+				  uni.navigateTo({
+				  	url:"/pages/addressManagement/addressManagement"
+				  })
+			  } else if (res.cancel) {
+				  console.log('用户点击取消');
+			  }
+		  }
         });
       }
     },
-
-    logistics() {
+    logistics() {//查看物流
+	console.log(this.address)
       if (!this.pageLoading) {
         this.pageLoading = true;
-        wx.navigateTo({
+        uni.navigateTo({
           url: '/pages/orderTracking/orderTracking?logisticsCode=' + this.address.logisticsCode + '&logisticsPostid=' + this.address.logisticsPostid
         });
       }
     },
-
-    sureOrder() {
+    sureOrder() {//确认收货
       var that = this;
-      wx.showModal({
+      uni.showModal({
         title: '提示',
         content: '是否确认收货',
         success: function (res) {
           if (res.confirm) {
-            wx.request({
-              url: getApp().globalData.url3 + getApp().globalData.confirmReceive,
+           uniHttp({
+              path:getApp().globalData.confirmReceive,
               data: {
                 parendNo: that.parendNo,
                 supId: that.supId,
                 openId: getApp().globalData.openId,
-                wxMemId: getApp().globalData.memId
+                wxMemId:that.$store.getters['login/get_userInfo'].id
               },
               header: {
-                aid: 128
+                aid: 128,
+				
               },
               method: 'put',
-              dataType: 'json',
-              responseType: 'text',
-              success: function (res) {
-                that.setData({
-                  orderStatus: 5
-                });
-              },
-              fail: function (res) {},
-              complete: function (res) {}
-            });
+            }).then(res=>{
+				that.orderStatus=5;
+			})
           }
         }
       });
     },
-
-    deletOrder() {
+    deletOrder() {//删除订单
       var that = this;
-      wx.showModal({
+      uni.showModal({
         title: '提示',
         content: '确定删除订单',
         success: function (res) {
           if (res.confirm) {
-            if (that.orderStatus == 7) {
-              wx.request({
-                url: getApp().globalData.url3 + getApp().globalData.deleteOrderByCondition,
-                data: {
-                  parendNo: that.parendNo,
-                  supId: that.supId,
-                  category: 0
-                },
-                header: {
-                  aid: 127
-                },
-                method: 'delete',
-                dataType: 'json',
-                responseType: 'text',
-                success: function (res) {
-                  wx.navigateBack({
-                    delta: 1
-                  });
-                },
-                fail: function (res) {},
-                complete: function (res) {}
-              });
-            } else {
-              wx.request({
-                url: getApp().globalData.url3 + getApp().globalData.deleteOrderByCondition,
-                data: {
-                  parendNo: that.parendNo,
-                  supId: that.supId,
-                  category: 1
-                },
-                header: {
-                  aid: 127
-                },
-                method: 'delete',
-                dataType: 'json',
-                responseType: 'text',
-                success: function (res) {
-                  wx.navigateBack({
-                    delta: 1
-                  });
-                },
-                fail: function (res) {},
-                complete: function (res) {}
-              });
-            }
+			  let type=that.orderStatus==7?0:1;
+			  uniHttp({
+			    path:  getApp().globalData.deleteOrderByCondition,
+			    data: {
+			      parendNo: that.parendNo,
+			      supId: that.supId,
+			      category:type
+			    },
+			    header: {
+			      aid: 127,
+			  	 
+			    },
+			    method: 'delete',
+			  }).then(res=>{
+					console.log(res)
+					uni.navigateBack({
+						delta: 1
+					});
+			  })
+            
           } else if (res.cancel) {}
         }
       });

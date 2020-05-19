@@ -76,9 +76,12 @@
 					memAccount:this.inputValue1,//	是	string	用户名
 					memPassword:this.inputValue2,//	是	string	密码
 				}
-				login(params,131).then(//注册aid 132
+				//"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMjQ1OTc5MzMxNzE2MTAwMDk3In0.nzjrGIADbXFAJhRBjfefg_hpsUoahBEcDc-a6KyFZQhc7DUj47NNwNON9mmN6Hd7EAocpG-4NB254TilV4o1WQ"
+				//eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMjQ1OTc5MzMxNzE2MTAwMDk3In0.gJFG5dJ9cwqDRXLDO_2sjanV6Y7AcjM8f65gkaN-Yg7JlUY8hkYw7evAwg03fcsXWqnE8owwl0yK4NWSKYXOCQ
+				login(params,131).then(//登录aid 132
 					(res) => {
 						if(res.data.code==200){
+							console.log(res.data)
 							that.$store.dispatch('login/SET_isLogin',true)
 							that.$store.dispatch('login/SET_userInfo',res.data.data)
 							uni.setStorage({

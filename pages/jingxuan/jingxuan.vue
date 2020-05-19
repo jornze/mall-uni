@@ -72,6 +72,7 @@ export default {
 
   //生命周期函数--监听页面加载
   onLoad: function (options) {
+	  console.log(this.$store.getters['login/get_userInfo'])
 	   this.tabsgoodsVoList=[this.goodsVo1,this.goodsVo2,this.goodsVo3];
 	  uni.showLoading({
 	  	title:"加载中...",
@@ -89,7 +90,8 @@ export default {
 			uniHttp({//tab列表
 				"path":"/goods/api/goodsInternal/getTabsListByCategory/1",
 				"header":{
-					"aid":"103"
+					"aid":"103",
+					
 				}
 			})
 		]
@@ -98,23 +100,18 @@ export default {
 		  console.log(res)
 		  let swoingMapData=res[0];
 		  let tabsListData=res[1];
-		  console.log(typeof swoingMapData.data.data.errorCode)
 		  //轮播图
-			if (swoingMapData.data.data.errorCode == "200") {
-				if (swoingMapData.data.data.shopContentVoList.length > 0) {
-				  for (var i = 0; i < swoingMapData.data.data.shopContentVoList.length; i++) {
-					var img = getApp().globalData.imgUrl + "/" + swoingMapData.data.data.shopContentVoList[i].contentWxImg;
-					swoingMapData.data.data.shopContentVoList[i].contentWxImg = img;
-				  }
-				  this.homePageMap.push(...swoingMapData.data.data.shopContentVoList)
-				}
+			if (swoingMapData.shopContentVoList.length > 0) {
+			  for (var i = 0; i < swoingMapData.shopContentVoList.length; i++) {
+				var img = getApp().globalData.imgUrl + "/" + swoingMapData.shopContentVoList[i].contentWxImg;
+				swoingMapData.shopContentVoList[i].contentWxImg = img;
+			  }
+			  this.homePageMap.push(...swoingMapData.shopContentVoList)
 			}
-			if (tabsListData.data.data.errorCode == "200") {
-			    this.goodsTabsVoList=tabsListData.data.data.goodsTabsVoList;
-				if(this.goodsTabsVoList.length!=0){
-					//获取tabs商品列表
-					this.getgoodsVo(0)
-				}
+			this.goodsTabsVoList=tabsListData.goodsTabsVoList;
+			if(this.goodsTabsVoList.length!=0){
+				//获取tabs商品列表
+				this.getgoodsVo(0)
 			}
 		})
 		uni.getSystemInfo({
@@ -178,7 +175,7 @@ export default {
         uni.navigateTo({
           url: '/pages/commodity_details/commodity_details?goodsId=' + item.desc
         });
-      } else {}
+      }
     },
 	//点击商品进去商品详情页
     commodity_details: function (goodsid) {
@@ -213,35 +210,28 @@ export default {
 			uniHttp({
 				"path":`/goods/api/goodsInternal/getGoodsListByHome/${page}/${id}`,
 				"header":{
-					"aid":"104"
+					"aid":"104",
+					
 				}
 			}).then(res=>{
 				this.repeatedLoading= true;
 				let goodslist=res;
-				if (goodslist.data.data.errorCode == "200") {
-					console.log(goodslist.data.data.goodsVoList.length);
-					if (goodslist.data.data.goodsVoList.length > 0) {
-						for (var i = 0; i < goodslist.data.data.goodsVoList.length; i++) {
-						  var img = getApp().globalData.imgUrl + "/" + goodslist.data.data.goodsVoList[i].goodsPic;
-						  goodslist.data.data.goodsVoList[i].goodsPic = img;
-						}
-						this.tabsgoodsVoList[index].push(...goodslist.data.data.goodsVoList);
-						this.currentgoodsVo=this.tabsgoodsVoList[index];
-				    }else{
-						this.isloadedend=true;
-						console.log('isend');
+				if (goodslist.goodsVoList.length > 0) {
+					for (var i = 0; i < goodslist.goodsVoList.length; i++) {
+					  var img = getApp().globalData.imgUrl + "/" + goodslist.goodsVoList[i].goodsPic;
+					  goodslist.goodsVoList[i].goodsPic = img;
 					}
-				  //隐藏导航条加载动画。
-				  // #ifdef MP-WEIXIN
-				  uni.hideNavigationBarLoading();
-				  // #endif
-				  uni.stopPullDownRefresh();
-				} else {
-				  uni.showModal({
-				    title: '提示',
-				    content: res.data.msg
-				  });
+					this.tabsgoodsVoList[index].push(...goodslist.goodsVoList);
+					this.currentgoodsVo=this.tabsgoodsVoList[index];
+				}else{
+					this.isloadedend=true;
+					console.log('isend');
 				}
+				//隐藏导航条加载动画。
+				// #ifdef MP-WEIXIN
+				uni.hideNavigationBarLoading();
+				// #endif
+				uni.stopPullDownRefresh();
 				uni.hideLoading();
 			})
 		}else{

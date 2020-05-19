@@ -1,0 +1,1 @@
+<view><view class="head-img"><image src="{{userImg}}"></image></view><view class="title">确认授权账号登录TimeSee小程序</view><button open-type="getUserInfo" lang="zh_CN" data-event-opts="{{[['getuserinfo',[['onGotUserInfo',['$event']]]]]}}" bindgetuserinfo="__e">确认</button></view>

@@ -169,3 +169,10 @@ page{
   line-height: 70rpx;
   text-align: center
 }
+.bottomText{
+	text-align: center;
+	height: 80rpx;
+	line-height: 89rpx;
+	font-size: 30rpx;
+	color:#D4D4D4;
+}

@@ -1,16 +1,13 @@
 .order-header{
   width: 750rpx;
   height: 170rpx;
-  background: -webkit-gradient(linear, left top, right top, from(#ff625f) , to(#ff7a56));
-  background: -o-linear-gradient(left, #ff625f , #ff7a56);
+  background: -webkit-linear-gradient(left, #ff625f , #ff7a56);
   background: linear-gradient(to right, #ff625f , #ff7a56);
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
   -webkit-align-items: center;
-      -ms-flex-align: center;
           align-items: center
 }
 .order-header image{
@@ -21,12 +18,10 @@
 .order-header>view{
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
-      -ms-flex-direction: column;
           flex-direction: column;
   color: #fff;
   margin-left: 30rpx;
@@ -44,11 +39,9 @@
   border-bottom: 1rpx solid #eee;
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
   -webkit-align-items: center;
-      -ms-flex-align: center;
           align-items: center
 }
 .describe view{
@@ -99,18 +92,14 @@
   padding-top: 20rpx;
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: reverse;
   -webkit-flex-direction: row-reverse;
-      -ms-flex-direction: row-reverse;
           flex-direction: row-reverse;
   -webkit-flex-wrap: wrap;
-      -ms-flex-wrap: wrap;
           flex-wrap: wrap;
   -webkit-justify-content: space-around;
-      -ms-flex-pack: distribute;
           justify-content: space-around;
 }
 .logistics-cen-cen>view{
@@ -134,16 +123,13 @@
 .none{
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
-      -ms-flex-direction: column;
           flex-direction: column;
   -webkit-box-align: center;
   -webkit-align-items: center;
-      -ms-flex-align: center;
           align-items: center;
 }
 .none image{

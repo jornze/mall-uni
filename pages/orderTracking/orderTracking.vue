@@ -1,9 +1,6 @@
 <template>
 <view>
 <!-- <web-view src="https://m.kuaidi100.com/index_all.html?type={{logisticsCode}}&postid={{logisticsPostid}}"></web-view> -->
-<view> 
-  <loading :hidden="hidden">加载中...</loading> 
-</view>
 <view class="order-header">
   <view>
     <text>物流公司：{{logisticName}}</text>
@@ -27,14 +24,13 @@
 </template>
 
 <script>
-
+import {uniHttp} from "../../apis/api.js"
 export default {
   data() {
     return {
       logisticName: '',
       logisticNo: '',
       logisticText: '',
-      hidden: false
     };
   },
 
@@ -45,41 +41,29 @@ export default {
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+	  uni.showLoading({
+	  	title:"加载中...",
+		mask:true
+	  })
     var that = this;
-    wx.request({
-      url: getApp().globalData.url3 + getApp().globalData.logisticDetail + '?logisticsCode=' + options.logisticsCode + '&logisticsPostid=' + options.logisticsPostid,
-      data: '',
-      header: {},
-      method: 'GET',
-      dataType: 'json',
-      responseType: 'text',
-      success: function (res) {
-        if (res.data.code == 200) {
-          var logisticText = JSON.parse(res.data.data.logisticText);
-          that.setData({
-            logisticText: logisticText,
-            hidden: true,
-            logisticName: res.data.data.logisticName,
-            logisticNo: res.data.data.logisticNo
-          });
-
-          if (logisticText.message !== 'ok') {
-            wx.showToast({
-              title: '快递公司正在揽件,请稍后再试',
-              mask: true,
-              icon: 'none'
-            });
-          }
-        }
-      },
-      fail: function (res) {
-        wx.showToast({
-          title: '请求超时',
-          mask: true
-        });
-      },
-      complete: function (res) {}
-    });
+    uniHttp({
+      path:getApp().globalData.logisticDetail + '?logisticsCode=' + options.logisticsCode + '&logisticsPostid=' + options.logisticsPostid,
+	  method: 'GET'
+    }).then(res=>{
+		let data=res.data;
+		  var logisticText = JSON.parse(data.logisticText);
+		  that.logisticText=logisticText;
+		  that.logisticName=data.logisticName;
+		  that.logisticNo=data.logisticNo;
+		  uni.hideLoading()
+		  if (logisticText.message !== 'ok') {
+		    uni.showToast({
+		      title: '快递公司正在揽件,请稍后再试',
+		      mask: true,
+		      icon: 'none'
+		    });
+		  }
+	})
   },
 
   /**

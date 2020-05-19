@@ -6,13 +6,14 @@
      <view class="head-img">
        <image :src="userImg"></image>
      </view>
-     <view class="class-round" v-if>
+     <view class="class-round" v-if="isLogin==true">
        <image src="/static/images/associator.png"></image>
      </view>
-     <view class="num-round" v-if>71</view>
-     <view class="class" v-if>钻石会员</view>
-     <view class="num" v-if>用户等级</view>
-     <view class="uesr-name">{{userName}}</view>
+     <view class="num-round" v-if="isLogin==true">{{this.$store.getters['login/get_userInfo'].memLevel}}</view>
+     <view class="class" v-if="isLogin==true">钻石会员</view>
+     <view class="num" v-if="isLogin==true">用户等级</view>
+     <view class="uesr-name" v-if="isLogin==true">{{this.$store.getters['login/get_userInfo'].nickname}}</view>
+	 <view class="uesr-name" v-if="isLogin==false" @click="goLogin">{{userName}}</view>
   </view>
   <view>
     <view>
@@ -90,7 +91,7 @@
 </template>
 
 <script>
-
+import {uniHttp} from "../../apis/api.js"
 export default {
   data() {
     return {
@@ -112,6 +113,8 @@ export default {
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+	
+	
     // #ifdef MP-WEIXIN
     getApp().globalData.login();
     // #endif
@@ -126,6 +129,10 @@ export default {
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+	  if(this.isLogin){
+		  this.getPayLNum();//获取待支付等信息
+		  this.getShopingCarNum();//获取购物侧数据
+	  }
     this.pageLoading = false;
 	this.userImg=getApp().globalData.userImg;
     var that = this;
@@ -251,44 +258,127 @@ export default {
 
     shoppingCart() {
       var that = this;
-
-      if (getApp().globalData.memId) {
-        if (!that.pageLoading) {
-          that.pageLoading = true;
-          wx.navigateTo({
-            url: '/pages/shoppingCart/shoppingCart'
-          });
-        }
-      }
+		if(this.isLogin==true){
+			     that.pageLoading = true;
+			    wx.navigateTo({
+			      url: '/pages/shoppingCart/shoppingCart'
+			    });
+		}else if(this.isLogin==false){
+			uni.showModal({
+				title: '',
+				content: '暂未登录，请登录',
+				success: function (res) {
+					if (res.confirm) {
+						uni.navigateTo({
+						       url: '/pages/login/login'
+						}); 
+					} else if (res.cancel) {
+					}
+				}
+			});
+		}
     },
 
     orderStatus(e) {
-      var that = this;
-
-      if (getApp().globalData.memId) {
-        if (!that.pageLoading) {
-          that.pageLoading = true;
-          wx.navigateTo({
-            url: '/pages/allOrders/allOrders?orderStatus=' + e.currentTarget.dataset.orderstatus
-          });
-        }
-      }
+		var that = this;
+		if(this.isLogin==true){
+			that.pageLoading = true;
+			uni.navigateTo({
+			  url: '/pages/allOrders/allOrders?orderStatus=' + e.currentTarget.dataset.orderstatus
+			}); 
+		}else if(this.isLogin==false){
+			uni.showModal({
+				title: '',
+				content: '暂未登录，请登录',
+				success: function (res) {
+					if (res.confirm) {
+						uni.navigateTo({
+						       url: '/pages/login/login'
+						}); 
+					} else if (res.cancel) {
+					}
+				}
+			});
+		}
     },
-
     address() {
-      var that = this;
+		var that = this;
+		if(this.isLogin==true){
+			uni.navigateTo({
+			       url: '/pages/addressManagement/addressManagement'
+			}); 
+		}else if(this.isLogin==false){
+			uni.showModal({
+				title: '',
+				content: '暂未登录，请登录',
+				success: function (res) {
+					if (res.confirm) {
+						uni.navigateTo({
+						       url: '/pages/login/login'
+						}); 
+					} else if (res.cancel) {
+					}
+				}
+			});
+		}
+    },
+	goLogin:function(){
+		uni.navigateTo({
+		       url: '/pages/login/login'
+		}); 
+	},
+	getShopingCarNum:function(){//获取100code
+		var that = this;
+		
+		uniHttp({
+			path:'/member/api/memberInternal/getShoppingCartList/'+'1' + '/10/' + this.$store.getters['login/get_userInfo'].id + '/1',
+			header:{
+				aid:117,
+				
+			}
+		}).then(res=>{
+			that.getSCarNum(res.skuId_count)
+		})	
+	},
+	getSCarNum:function(skuIdCount){//获取118code
+		var that = this;
+		uniHttp({
+			path:'/goods/api/goodsInternal/getSkuVoListBySkuIdList',
+			data:{
+				skuId_count: skuIdCount
+			},
+			header:{
+				aid:118,
+				
+			},
+			method:"post",
+		}).then(res=>{
+			this.shoppingCarNum=res.goodsSkuVoList.length;
+		})	
+		
+	},
+	getPayLNum:function(){//获取108code
+		var that = this;
+		uniHttp({
+			path:'/orders/api/orderInternal/getOrderGroupByMemid/'+this.$store.getters['login/get_userInfo'].id,
+			header:{
+				aid:108,
+				
+			}
+		}).then(res=>{
+			this.UC=parseInt(res.orderQuantity.UC);
+			this.UD=parseInt(res.orderQuantity.UD);
+			this.UG=parseInt(res.orderQuantity.UG);
+			this.UP=parseInt(res.orderQuantity.UP);
+		})		
+	}
 
-      if (getApp().globalData.memId) {
-        if (!that.pageLoading) {
-          that.pageLoading = true;
-          wx.navigateTo({
-            url: '/pages/addressManagement/addressManagement'
-          });
-        }
-      }
-    }
-
-  }
+  },
+  computed: {
+  	isLogin() {
+  		return this.$store.getters['login/get_isLogin']
+  	}
+  },
 };
 </script>
 <style>

@@ -1,0 +1,67 @@
+{
+  "pages": [
+    "pages/jingxuan/jingxuan",
+    "pages/classify/classify",
+    "pages/xiaoyuexing/xiaoyuexing",
+    "pages/my/my",
+    "pages/orderTracking/orderTracking",
+    "pages/orderDetailByOrders/orderDetailByOrders",
+    "pages/shoppingCart/shoppingCart",
+    "pages/orderDetails/orderDetails",
+    "pages/editAddress/editAddress",
+    "pages/addressManagement/addressManagement",
+    "pages/newAddress/newAddress",
+    "pages/authorization/authorization",
+    "pages/commodity_details/commodity_details",
+    "pages/allOrders/allOrders",
+    "pages/h5/h5",
+    "pages/login/login",
+    "pages/register/register"
+  ],
+  "subPackages": [],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "TimeSee",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": false,
+    "onReachBottomDistance": 100
+  },
+  "tabBar": {
+    "color": "#666666",
+    "selectedColor": "#ff4444",
+    "list": [
+      {
+        "pagePath": "pages/jingxuan/jingxuan",
+        "text": "精选",
+        "iconPath": "/static/images/icon/jingxuan_uncheckede.png",
+        "selectedIconPath": "/static/images/icon/jingxuan_checked.png"
+      },
+      {
+        "pagePath": "pages/classify/classify",
+        "text": "分类",
+        "iconPath": "/static/images/icon/classify_uncheckede.png",
+        "selectedIconPath": "/static/images/icon/classify_checked.png"
+      },
+      {
+        "pagePath": "pages/xiaoyuexing/xiaoyuexing",
+        "text": "小确幸",
+        "iconPath": "/static/images/icon/xiaoyuqxing_uncheckede.png",
+        "selectedIconPath": "/static/images/icon/xiaoyuqxing_checkede.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "个人中心",
+        "iconPath": "/static/images/icon/my_uncheckede.png",
+        "selectedIconPath": "/static/images/icon/my_checkede.png"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "usingComponents": {},
+  "sitemapLocation": "sitemap83.json"
+}

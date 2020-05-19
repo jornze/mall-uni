@@ -5,16 +5,13 @@ page{
 .none{
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
-      -ms-flex-direction: column;
           flex-direction: column;
   -webkit-box-align: center;
   -webkit-align-items: center;
-      -ms-flex-align: center;
           align-items: center;
 }
 .none image{
@@ -37,11 +34,9 @@ page{
   height: 170rpx;
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
   -webkit-align-items: center;
-      -ms-flex-align: center;
           align-items: center;
   position: relative
 }
@@ -74,7 +69,6 @@ page{
 .addressMain>view:nth-child(2){
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex
 }
 .addressMainDetails{

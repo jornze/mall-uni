@@ -18,12 +18,12 @@
     </view>
     <view class="status" v-if="item.orderVoList[0].orderStatus==1">待支付</view>
     <view class="status" v-if="item.orderVoList[0].orderStatus==2">待发货</view>
-    <view class="status" v-if="item.orderVoList[0].orderStatus==3||item.orderVoList[0].orderStatus==4">待收货</view>
+    <view class="status" v-if="item.orderVoList[0].orderStatus==3||item.orderVoList[0].orderStatus==4">待收货1</view>
     <view class="status" v-if="item.orderVoList[0].orderStatus==5">待评价</view>
     <view class="status" v-if="item.orderVoList[0].orderStatus==6">已完成</view>
     <view class="status" v-if="item.orderVoList[0].orderStatus==7">已取消</view>
   </view>
-  <block v-for="(item, i) in orderTYVoList[index].orderVoList" :key="i">
+  <block v-for="(item, i) in orderTYVoList[o].orderVoList" :key="i">
   <view class="commodity-list">
     <image :src="item.skuImg"></image>
     <view>
@@ -39,32 +39,32 @@
   <view class="order-total">
     <view>共<span>{{item.totalQuantity}}</span>件商品，实付<span>￥{{item.orderVoList[0].totalAmount}}</span></view>
     <view class="order-other">
-      <view class="buyAgain" @tap.stop="logistics" v-if="item.orderVoList[0].orderStatus==3||item.orderVoList[0].orderStatus==4" :data-id="item.orderVoList[0].id">查看物流</view>
-      <view class="buyAgain" v-if>再次购买</view>
+      <view class="buyAgain" @tap.stop="logistics(item.orderVoList[0].id)" v-if="item.orderVoList[0].orderStatus==3||item.orderVoList[0].orderStatus==4">查看物流</view>
+      <view class="buyAgain" v-if="item.orderVoList[0].orderStatus==5">再次购买</view>
       <view class="buyAgain" v-if="item.orderVoList[0].orderStatus==2" @tap.stop="remind">提醒发货</view>
       <view class="buyAgain" v-if="item.orderVoList[0].orderStatus==1">立即支付</view>
-      <view class="deletOrder" v-if="item.orderVoList[0].orderStatus==7||item.orderVoList[0].orderStatus==6" @tap.stop="deletOrder" :data-parendNo="item.parendNo" :data-orderStatus="item.orderVoList[0].orderStatus" :data-supId="item.orderVoList[0].supId">删除订单</view>
+      <view class="deletOrder" v-if="item.orderVoList[0].orderStatus==6||item.orderVoList[0].orderStatus==7" @tap.stop="deletOrder({parendNo:item.parendNo,type:item.orderVoList[0].orderStatus,supId:item.orderVoList[0].supId,index:o})" >删除订单</view>
     </view>
   </view>
 </view>
 </block>
+<view v-show="isloadedend" class="bottomText">已全部加载</view>
 </view>
 </template>
 
 <script>
-
+import {uniHttp} from "../../apis/api.js"
 export default {
   data() {
     return {
       orderStatus: '',
       orderTYVoList: [],
-      hidden: false,
       repeatedLoading: true,
       page: 1,
-      flag: ''
+      flag: '',
+	  isloadedend:false,
     };
   },
-
   components: {},
   props: {},
 
@@ -72,27 +72,11 @@ export default {
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      orderStatus: options.orderStatus
-    });
-
-    if (options.orderStatus == 1) {
-      uni.setNavigationBarTitle({
-        title: '待付款'
-      });
-    } else if (options.orderStatus == 2) {
-      uni.setNavigationBarTitle({
-        title: '待发货'
-      });
-    } else if (options.orderStatus == 3) {
-      uni.setNavigationBarTitle({
-        title: '待收货'
-      });
-    } else if (options.orderStatus == 5) {
-      uni.setNavigationBarTitle({
-        title: '待评价'
-      });
-    }
+	this.orderStatus=options.orderStatus;
+	let orderstatusText=['全部订单','待付款','待发货','待收货','','待评价'];//0 1,2,3,5
+	uni.setNavigationBarTitle({
+		title: orderstatusText[options.orderStatus]
+	});
   },
 
   /**
@@ -104,11 +88,9 @@ export default {
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    uni.hideShareMenu();
-    this.setData({
-      page: 1,
-      orderTYVoList: []
-    });
+    // uni.hideShareMenu();
+	this.page=1;
+	this.orderTYVoList=[];
     this.getOrderList();
     this.pageLoading = false;
   },
@@ -132,7 +114,7 @@ export default {
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    if (this.repeatedLoading) {
+    if (this.repeatedLoading && !this.isloadedend) {
       this.repeatedLoading = false;
       this.page = this.page + 1;
       this.getOrderList();
@@ -144,7 +126,7 @@ export default {
    */
   onShareAppMessage: function () {},
   methods: {
-    orderDetails(e) {
+    orderDetails(e) {//查看订单详情
       if (!this.pageLoading) {
         this.pageLoading = true;
         uni.navigateTo({
@@ -153,144 +135,118 @@ export default {
       }
     },
 
-    logistics(e) {
+    logistics(id) {//查看物流
       var that = this;
-      uni.request({
-        url: getApp().globalData.url3 + getApp().globalData.getLogisticsDetailById + e.currentTarget.dataset.id,
-        data: '',
+      uniHttp({
+        path:getApp().globalData.getLogisticsDetailById +id,//getApp().globalData.url3
         header: {
           aid: 129
         },
-        method: 'GET',
-        dataType: 'json',
-        responseType: 'text',
-        success: function (res) {
-          if (!that.pageLoading) {
-            that.pageLoading = true;
-            uni.navigateTo({
-              url: '/pages/orderTracking/orderTracking?logisticsCode=' + res.data.data.rtOrderDetail.logisticsCode + '&logisticsPostid=' + res.data.data.rtOrderDetail.logisticsPostid
-            });
-          }
-        },
-        fail: function (res) {},
-        complete: function (res) {}
-      });
+        method: 'GET'
+      }).then(res=>{
+		  console.log(id)
+		  if (!that.pageLoading) {
+		    that.pageLoading = true;
+		    uni.navigateTo({
+		      url: '/pages/orderTracking/orderTracking?logisticsCode=' + res.rtOrderDetail.logisticsCode + '&logisticsPostid=' + res.rtOrderDetail.logisticsPostid
+		    });
+		  }
+	  })
     },
-
-    deletOrder(e) {
+    deletOrder(deletParams) {//删除订单 orderstatus=6 / 7
       var that = this;
       uni.showModal({
         title: '提示',
         content: '确定删除订单',
         success: function (res) {
           if (res.confirm) {
-            if (e.currentTarget.dataset.orderstatus == 7) {
-              that.setData({
-                hidden: true
-              });
-              uni.request({
-                url: getApp().globalData.url3 + getApp().globalData.deleteOrderByCondition,
-                data: {
-                  parendNo: e.currentTarget.dataset.parendno,
-                  supId: e.currentTarget.dataset.supid,
-                  category: 0
-                },
-                header: {
-                  aid: 127
-                },
-                method: 'delete',
-                dataType: 'json',
-                responseType: 'text',
-                success: function (res) {
-                  that.setData({
-                    page: 1,
-                    orderTYVoList: []
-                  });
-                  that.getOrderList();
-                },
-                fail: function (res) {},
-                complete: function (res) {
-                  that.setData({
-                    hidden: false
-                  });
-                }
-              });
-            } else if (e.currentTarget.dataset.orderstatus == 6) {
-              uni.request({
-                url: getApp().globalData.url3 + getApp().globalData.deleteOrderByCondition,
-                data: {
-                  parendNo: e.currentTarget.dataset.parendno,
-                  supId: e.currentTarget.dataset.supid,
-                  category: 1
-                },
-                header: {
-                  aid: 127
-                },
-                method: 'delete',
-                dataType: 'json',
-                responseType: 'text',
-                success: function (res) {
-                  that.setData({
-                    page: 1,
-                    orderTYVoList: []
-                  });
-                  that.getOrderList();
-                },
-                fail: function (res) {},
-                complete: function (res) {}
-              });
-            }
+			  that.deletOrderHttp(deletParams);
           } else if (res.cancel) {}
         }
       });
     },
-
-    getOrderList() {
+	deletOrderHttp(deletParams){//删除订单请求 category对应的值6=>1  7=>0
+	let type=deletParams.type==7?0:1;
+		uni.showLoading({
+			title:"删除中...",
+			mask:true
+		})
+		uniHttp({
+		  path: getApp().globalData.deleteOrderByCondition,
+		  data: {
+		    parendNo: deletParams.parendNo,
+		    supId:  deletParams.supId,
+		    category: type
+		  },
+		  header: {
+		    aid: 127,
+		  },
+		  method: 'delete',
+		}).then(res=>{
+				this.orderTYVoList.splice(deletParams.index,1);
+				uni.showToast({
+					title:"删除成功",
+					icon:"success"
+				})
+				if(!this.orderTYVoList.length){
+					this.page=1;
+					this.getOrderList();
+				}
+			
+			uni.hideLoading()
+		})
+	},
+    getOrderList() {//获取订单列表
+		uni.showLoading({
+			title:"加载中...",
+			mask:true
+		})
       var that = this;
-      uni.request({
-        url: getApp().globalData.url3 + getApp().globalData.getOrderListByStatus + this.page + '/5',
-        data: {
-          wxMemId: getApp().globalData.memId,
-          openId: getApp().globalData.openId,
-          orderStatus: this.orderStatus
-        },
-        header: {
-          aid: 125
-        },
-        method: 'post',
-        dataType: 'json',
-        responseType: 'text',
-        success: function (res) {
-          that.repeatedLoading = true;
-          that.setData({
-            hidden: true,
-            flag: res.data.data.flag
-          });
-
-          if (res.data.data.orderTYVoList.length > 0) {
-            for (var i = 0; i < res.data.data.orderTYVoList.length; i++) {
-              for (var j = 0; j < res.data.data.orderTYVoList[i].orderVoList.length; j++) {
-                var img = getApp().globalData.imgUrl + res.data.data.orderTYVoList[i].orderVoList[j].skuImg;
-                res.data.data.orderTYVoList[i].orderVoList[j].skuImg = img;
-                res.data.data.orderTYVoList[i].orderVoList[j].marketPrice = res.data.data.orderTYVoList[i].orderVoList[j].marketPrice.toFixed(2);
-                res.data.data.orderTYVoList[i].orderVoList[j].totalAmount = res.data.data.orderTYVoList[i].orderVoList[j].totalAmount.toFixed(2);
-              }
-
-              var orderTYVoList = that.orderTYVoList;
-              orderTYVoList.push(res.data.data.orderTYVoList[i]);
-            }
-
-            that.setData({
-              orderTYVoList: orderTYVoList
-            });
-          }
-        },
-        fail: function (res) {},
-        complete: function (res) {}
-      });
+	  uniHttp({//获取商品详情
+	  	"path":"/orders/api/orderInternal/getOrderListByStatus/"+this.page+'/5',
+		method:"POST",
+		data: {
+		  wxMemId: this.$store.getters['login/get_userInfo'].id,
+		  openId: getApp().globalData.openId,
+		  orderStatus: this.orderStatus
+		},
+	  	"header":{
+	  		aid:125,
+	  	}
+	  }).then(res=>{
+		  that.repeatedLoading = true;
+		   that.flag=res.flag;
+		if (res.orderTYVoList.length > 0) {
+		    for (var i = 0; i < res.orderTYVoList.length; i++) {
+		      for (var j = 0; j < res.orderTYVoList[i].orderVoList.length; j++) {
+		        var img = getApp().globalData.imgUrl + res.orderTYVoList[i].orderVoList[j].skuImg;
+		        res.orderTYVoList[i].orderVoList[j].skuImg = img;
+		        res.orderTYVoList[i].orderVoList[j].marketPrice = res.orderTYVoList[i].orderVoList[j].marketPrice.toFixed(2);
+		        res.orderTYVoList[i].orderVoList[j].totalAmount = res.orderTYVoList[i].orderVoList[j].totalAmount.toFixed(2);
+		      }
+		      var orderTYVoList = that.orderTYVoList;
+		      orderTYVoList.push(res.orderTYVoList[i]);
+		    }
+		    that.orderTYVoList=orderTYVoList;
+			if(res.orderTYVoList.length<5){
+				if(this.page>1){
+					that.isloadedend=true;
+				}
+				
+			}
+		}else{
+			that.isloadedend=true;
+			if(that.flag){
+				that.isloadedend=false;
+			}
+		}
+		  uni.hideLoading();
+	  }).catch(err=>{
+		  uni.hideLoading()
+	  })
     },
 
-    remind() {
+    remind() {//提醒发货
       uni.showToast({
         title: '已提醒发货',
         mask: true,

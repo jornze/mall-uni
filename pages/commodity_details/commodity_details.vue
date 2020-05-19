@@ -22,13 +22,13 @@
     <view>
       <view>
         <text class="commodity-title">{{all.goodsName}}</text>
-        <text class="commodity-class" v-if>定制版</text>
+        <text class="commodity-class" >定制版</text>
       </view>
       <view>
         <text class="commodity-ensure" v-for="(item, a) in all.ensureList" :key="a" v-if="item.rank==2">{{item.content}}</text>
       </view>
     </view>
-    <view v-if>
+    <view >
       <image src="/static/images/Commodity_details_Collection_uncheckede_Copy.png"></image>
       <text>已收藏</text>
     </view>
@@ -75,7 +75,7 @@
     <view>
       <text class="commodity-choose-intro-name">{{all.goodsName}}</text>
       <text class="commodity-choose-intro-class">已选：{{chooseSku.skuName}}；</text>
-      <text class="commodity-choose-intro-free" v-if="">赠品：皮绳红色</text>
+      <text class="commodity-choose-intro-free" >赠品：皮绳红色</text>
       <view class="commodity-choose-intro-money">
         <view><span>￥</span>{{chooseSku.marketPrice}}</view>
         <text>x{{chooseSku.skuQty}}</text>
@@ -100,7 +100,7 @@
       <view :class="chooseSku.skuQty==chooseSku.skuStock? 'jia-btn-disabled':'jia-btn'" @tap="add" >+</view>
     </view>
   </view>
-  <view class="commodity-choose-free" v-if="">
+  <view class="commodity-choose-free" >
     <text>赠品</text>
     <view>
       <text class="commodity-choose-guige-unchoose">红色</text>
@@ -117,21 +117,21 @@
 
 <script>
 import {uniHttp} from "../../apis/api.js"
-import {mapGetters,mapMutations,mapActions} from 'vuex'
+import {mapGetters} from 'vuex'
 export default {
   data() {
     return {
 	  hidden:false,
-      current: '',//''
-      choose: '',//'' buy shoppingCart
-      chooseIndex: 1,//''
-      chooseSku:'',//''
-      list:[],//[]
-      detailImgList:[],//''
-      all: '',//''
-      goodsSkuVoList: [],//[]
-      shoppingCartNum: '',//''
-      totalPrice: '',//''
+      current: '',
+      choose: '',// buy shoppingCart
+      chooseIndex: 1,
+      chooseSku:'',
+      list:[],
+      detailImgList:[],
+      all: '',
+      goodsSkuVoList: [],
+      shoppingCartNum: '',
+      totalPrice: '',
     };
   },
 
@@ -154,35 +154,34 @@ export default {
 		"header":{
 			"aid":"106",
 			"type":"1",
+			
 		}
 	}).then(result=>{
 		let res=result;
-		if (res.data.data.errorCode == 200) {
-		  for (var i = 0; i < res.data.data.goodsVo.carouselImgList.length; i++) {
-		    var img = getApp().globalData.imgUrl + "/" + res.data.data.goodsVo.carouselImgList[i];
-		    res.data.data.goodsVo.carouselImgList[i] = img;
+		  for (var i = 0; i < res.goodsVo.carouselImgList.length; i++) {
+		    var img = getApp().globalData.imgUrl + "/" + res.goodsVo.carouselImgList[i];
+		    res.goodsVo.carouselImgList[i] = img;
 		  }
-		  for (var i = 0; i < res.data.data.goodsVo.goodsSkuVoList.length; i++) {
-		    var img = getApp().globalData.imgUrl + "/" + res.data.data.goodsVo.goodsSkuVoList[i].mainImg;
+		  for (var i = 0; i < res.goodsVo.goodsSkuVoList.length; i++) {
+		    var img = getApp().globalData.imgUrl + "/" + res.goodsVo.goodsSkuVoList[i].mainImg;
 		    var skuQty = 1;
-		    res.data.data.goodsVo.goodsSkuVoList[i].skuQty = skuQty;
-		    res.data.data.goodsVo.goodsSkuVoList[i].mainImg = img;
+		    res.goodsVo.goodsSkuVoList[i].skuQty = skuQty;
+		    res.goodsVo.goodsSkuVoList[i].mainImg = img;
 		  }
 		
-		  for (var i = 0; i < res.data.data.goodsVo.detailImgList.length; i++) {
-		    var img = getApp().globalData.imgUrl + "/" + res.data.data.goodsVo.detailImgList[i];
-		    res.data.data.goodsVo.detailImgList[i] = img;
+		  for (var i = 0; i < res.goodsVo.detailImgList.length; i++) {
+		    var img = getApp().globalData.imgUrl + "/" + res.goodsVo.detailImgList[i];
+		    res.goodsVo.detailImgList[i] = img;
 		  }
 		
-		  for (var keyId in res.data.data.goodsVo.goodsSkuVoList) {
-		    this.goodsSkuVoList.push(res.data.data.goodsVo.goodsSkuVoList[keyId]);
+		  for (var keyId in res.goodsVo.goodsSkuVoList) {
+		    this.goodsSkuVoList.push(res.goodsVo.goodsSkuVoList[keyId]);
 		  }
-		this.list=res.data.data.goodsVo.carouselImgList;
-		this.all=res.data.data.goodsVo;
-		this.detailImgList=res.data.data.goodsVo.detailImgList;
+		this.list=res.goodsVo.carouselImgList;
+		this.all=res.goodsVo;
+		this.detailImgList=res.goodsVo.detailImgList;
 		this.chooseSku=this.goodsSkuVoList[0];
 		uni.hideLoading();
-	   }
 	})
   },
 
@@ -195,19 +194,17 @@ export default {
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+	 console.log(this.userInfo,this.loginStatus)
     this.pageLoading = false;
-    if (getApp().globalData.memId) {
-		uniHttp({//获取购物车编号
-			"path":"/member/api/memberInternal/getShoppingCartCount/"+getApp().globalData.memId,
+    if (this.userInfo) {//this.$store.getters['login/get_userInfo'].id
+		uniHttp({//获取购物车数量
+			"path":"/member/api/memberInternal/getShoppingCartCount/"+this.$store.getters['login/get_userInfo'].id,
 			"header":{
-				"aid":"107"
+				"aid":"107",
+				
 			}
 		}).then(result=>{
-			let res=result;
-			if (res.data.data.errorCode == 200) {
-			    this.shoppingCartNum=res.data.data.shoppingCartNum;
-				console.log(this.shoppingCartNum)
-			}
+			this.shoppingCartNum=result.shoppingCartNum;
 		})
     }
   },
@@ -237,13 +234,13 @@ export default {
    */
   onShareAppMessage: function () {},
   computed:{
-  	...mapGetters('shopingCar',{
-		"isLogin":"cons1"
+  	...mapGetters('login',{
+		"loginStatus":"get_isLogin",
+		"userInfo":"get_userInfo"
 	})
   },
   methods: {
-	 ...mapMutations('shopingCar',['mut1']),
-	 ...mapActions('shopingCar',['act1']),
+	  
     swiperChange: function (e) {//轮播当前的下标值
         this.current=e.detail.current;
     },
@@ -264,7 +261,7 @@ export default {
       });
     },
     shoppingCart() {//点击购物车
-		if (false) {
+		if (this.loginStatus) {
 			if (!this.pageLoading) {
 			  this.pageLoading = true;
 			  uni.navigateTo({
@@ -276,20 +273,10 @@ export default {
 		}
     },
     buyChoose() {//点击立即购买
-      if (getApp().globalData.memId) {
+      if (this.userInfo) {
           this.choose="buy";
       } else {//验证登录
-        uni.showModal({
-          title: '提示',
-          content: '小可爱，微信授权一键登录',
-          success:(res)=>{
-            if (res.confirm) {
-              uni.navigateTo({
-                url: '/pages/authorization/authorization'
-              });
-            } else if (res.cancel) {}
-          }
-        });
+        this.islogined()
       }
     },
 	orderDetails(e) {//立即购买->选好了 确定购买
@@ -297,9 +284,6 @@ export default {
 	  Settlement[0].goodsId = this.all.id;
 	  Settlement[0].skuId = this.chooseSku.id;
 	  Settlement[0].skuQty = this.chooseSku.skuQty;
-	  uni.navigateTo({
-	    url: '/pages/orderDetails/orderDetails?parendNo=' + 2
-	  });
 		uni.showLoading({
 			"title":"加载中...",
 			"mask":true,
@@ -308,30 +292,31 @@ export default {
 			"path":"/orders/api/orderInternal/generatingOrder",
 			"method":"POST",
 			"data":{
-				"wxMemId": getApp().globalData.memId,
-				"openId": getApp().globalData.openId,
+				"wxMemId": this.$store.getters['login/get_userInfo'].id,
+				"openId": "",
 				"orderSource": getApp().globalData.userType,
 				"orderVoList": Settlement
 			},
 			"header":{
-				"aid": 119
+				"aid": 119,
+				
 			}
 		}).then(result=>{
 			if (!this.pageLoading) {
 			  this.pageLoading = true;
 			  uni.hideLoading();
 			  uni.navigateTo({
-			    url: '/pages/orderDetails/orderDetails?parendNo=' + res.data.data.parendNo
+			    url: '/pages/orderDetails/orderDetails?parendNo=' + result.parendNo
 			  });
 			   this.choose='';
 			}
 		})
 	},
 	shoppingCartChoose() {//点击加入购物车
-	  if (getApp().globalData.memId) {
+	  if (this.userInfo) {
 	      this.choose='shoppingCart';
 	  } else {//验证登录
-	    
+	    this.islogined()
 	  }
 	},
     joinShoppingCart() {//确定添加到购物车
@@ -339,23 +324,26 @@ export default {
 			"path":getApp().globalData.addAShoppingCart,
 			method: 'POST',
 			data: {
-			  "memId": getApp().globalData.memId,
+			  "memId":this.$store.getters['login/get_userInfo'].id,
 			  "memSource": 1,
 			  "skuId": this.chooseSku.id,
 			  "qty": this.chooseSku.skuQty
 			},
 			"header":{
-				"aid":"114"
+				"aid":"114",
+				
 			}
 		}).then(res=>{
+			console.log(res)
 			uniHttp({//购物车数量
-				"path":getApp().globalData.getShoppingCartCount + getApp().globalData.memId,
+				"path":getApp().globalData.getShoppingCartCount + this.$store.getters['login/get_userInfo'].id,
 				data: {},
 				"header":{
-					"aid":"107"
+					"aid":"107",
+					
 				}
 			}).then(res=>{
-				 this.shoppingCartNum=res.data.data.shoppingCartNum;
+				 this.shoppingCartNum=res.shoppingCartNum;
 			})
 		})
        this.choose='';
@@ -385,21 +373,19 @@ export default {
       }
     },
 	islogined:function(){//是否登录
-		console.log(this.isLogin);
-		this.act1(2);
-		// if(!loginStatus){
-		// 	uni.showModal({
-		// 	  title: '提示',
-		// 	  content: '请先登录哦!',
-		// 	  success:(res)=>{
-		// 	    if (res.confirm) {
-		// 	      uni.navigateTo({
-		// 	        url: '/pages/login/login'
-		// 	      });
-		// 	    }
-		// 	  }
-		// 	});
-		// }
+		if(!this.loginStatus){
+			uni.showModal({
+			  title: '提示',
+			  content: '请先登录哦!',
+			  success:(res)=>{
+			    if (res.confirm) {
+			      uni.navigateTo({
+			        url: '/pages/login/login'
+			      });
+			    }
+			  }
+			});
+		}
 		
 	}
   }

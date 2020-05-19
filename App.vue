@@ -2,7 +2,8 @@
 
 export default {
   globalData: {
-    url1: 'http://183.131.205.116:8090',
+	  url1: '/api',
+    // url1: 'http://183.131.205.116:8090',
     url2: 'http://183.131.205.116:8090',
     url3: 'http://183.131.205.116:8090',
     // url1: 'http://192.168.160.21:8081',
@@ -51,9 +52,9 @@ export default {
     generatingOrder: '/orders/api/orderInternal/generatingOrder',
     //119结算
     getOrderListByParendNo: '/orders/api/orderInternal/getOrderListByParendNo/',
-    //120查订单
-    createUnifiedOrder: '/orders/api/orderInternal/createUnifiedOrder',
-    //121支付
+    //120查订单 
+    createUnifiedOrder: '/orders/api/pay/createTestUnifiedOrder',
+    //121支付 old '/orders/api/orderInternal/createUnifiedOrder',
     generateSignature: '/orders/api/orderInternal/generateSignature',
     //122支付再次签名
     orderClosureByParendNo: '/orders/api/orderInternal/orderClosureByParendNo',
@@ -75,10 +76,10 @@ export default {
     logisticDetail: '/orders/api/orderInternal/logisticDetail',
     //物流信息
     userName: '未登录',
-    openId: '',
+    openId: '',//oTtYu5f_MHip85UNqjZuJOnCiCw8
     userImg: '/static/images/moren.jpeg',
     userType: 1,
-	memId: '1244516043165716481',//'' 用户id
+	memId: '1244516043165716481',//'' 用户id 1245979331716100097   1244516043165716481
 	code:"023Q1oVE07k48f2l04WE0rAgVE0Q1oVr",// 登陆者身份编码
     shoppingCarNum: 0,
     login: function () {
@@ -154,6 +155,7 @@ export default {
   },
   onLaunch: function () {
 	var that =this;
+	console.log('onlaunch')
 	uni.getStorage({
 		key: 'storage_web_app_isLogin',
 		success: function (res) {

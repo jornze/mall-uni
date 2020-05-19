@@ -1,5 +1,5 @@
 {
-    "name" : "jewelry business",
+    "name" : "uni_wx",
     "appid" : "",
     "description" : "",
     "versionName" : "1.0.0",
@@ -70,29 +70,32 @@
         "usingComponents" : true
     },
     "h5" : {
-        "title" : "uniappH5",
+        "title" : "web_app",
         "router" : {
             "mode" : "history",
             "base" : "/h5/"
         },
-		"devServer": {
-			//"port": 8080,
-			"disableHostCheck": true,
-			"proxy": {
-				"/api": {
-					"target": "http://183.131.205.116:8090",//http://183.131.205.116:8090 https://douban-api.uieee.com
-					"changeOrigin": true,
-					"secure": false,
-					"pathRewrite":{"^/api":""}
-				}
-				
-			}
-		},
+        "devServer" : {
+            //"port": 8080,
+            "disableHostCheck" : true,
+            "proxy" : {
+                "/api" : {
+                    "target" : "http://183.131.205.116:8090", //http://183.131.205.116:8090 https://douban-api.uieee.com
+                    "changeOrigin" : true,
+                    "secure" : false,
+                    "pathRewrite" : {
+                        "^/api" : ""
+                    }
+                }
+            },
+            "https" : true
+        },
         "optimization" : {
             "treeShaking" : {
                 "enable" : true
             }
         },
-        "domain" : ""
+        "domain" : "",
+        "template" : ""
     }
 }

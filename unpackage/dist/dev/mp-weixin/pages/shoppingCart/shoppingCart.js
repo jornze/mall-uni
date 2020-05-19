@@ -1,20 +1,38 @@
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["pages/shoppingCart/shoppingCart"],{
 
-/***/ 64:
+/***/ 76:
+/*!******************************************************************************************!*\
+  !*** E:/uniapp/tgmallnew/web_app/main.js?{"page":"pages%2FshoppingCart%2FshoppingCart"} ***!
+  \******************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);__webpack_require__(/*! @dcloudio/uni-stat */ 5);
+
+var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
+var _shoppingCart = _interopRequireDefault(__webpack_require__(/*! ./pages/shoppingCart/shoppingCart.vue */ 77));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+createPage(_shoppingCart.default);
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
+
+/***/ }),
+
+/***/ 77:
 /*!***********************************************************************!*\
-  !*** C:/Users/TG/Desktop/web_app/pages/shoppingCart/shoppingCart.vue ***!
+  !*** E:/uniapp/tgmallnew/web_app/pages/shoppingCart/shoppingCart.vue ***!
   \***********************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _shoppingCart_vue_vue_type_template_id_46e62286___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./shoppingCart.vue?vue&type=template&id=46e62286& */ 65);
-/* harmony import */ var _shoppingCart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./shoppingCart.vue?vue&type=script&lang=js& */ 67);
+/* harmony import */ var _shoppingCart_vue_vue_type_template_id_53f80ca5___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./shoppingCart.vue?vue&type=template&id=53f80ca5& */ 78);
+/* harmony import */ var _shoppingCart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./shoppingCart.vue?vue&type=script&lang=js& */ 80);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _shoppingCart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _shoppingCart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _shoppingCart_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./shoppingCart.vue?vue&type=style&index=0&lang=css& */ 69);
-/* harmony import */ var _D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/lib/runtime/componentNormalizer.js */ 10);
+/* harmony import */ var _shoppingCart_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./shoppingCart.vue?vue&type=style&index=0&lang=css& */ 82);
+/* harmony import */ var _Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../Ksoftware/软件下载/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js */ 14);
 
+var renderjs
 
 
 
@@ -22,58 +40,68 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+var component = Object(_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _shoppingCart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _shoppingCart_vue_vue_type_template_id_46e62286___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _shoppingCart_vue_vue_type_template_id_46e62286___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _shoppingCart_vue_vue_type_template_id_53f80ca5___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _shoppingCart_vue_vue_type_template_id_53f80ca5___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
-  null
-  
+  null,
+  false,
+  _shoppingCart_vue_vue_type_template_id_53f80ca5___WEBPACK_IMPORTED_MODULE_0__["components"],
+  renderjs
 )
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "C:/Users/TG/Desktop/web_app/pages/shoppingCart/shoppingCart.vue"
+component.options.__file = "uniapp/tgmallnew/web_app/pages/shoppingCart/shoppingCart.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ 65:
+/***/ 78:
 /*!******************************************************************************************************!*\
-  !*** C:/Users/TG/Desktop/web_app/pages/shoppingCart/shoppingCart.vue?vue&type=template&id=46e62286& ***!
+  !*** E:/uniapp/tgmallnew/web_app/pages/shoppingCart/shoppingCart.vue?vue&type=template&id=53f80ca5& ***!
   \******************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
+/*! exports provided: render, staticRenderFns, recyclableRender, components */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_17_0_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_template_js_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_vue_loader_lib_index_js_vue_loader_options_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_shoppingCart_vue_vue_type_template_id_46e62286___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--17-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!./shoppingCart.vue?vue&type=template&id=46e62286& */ 66);
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_17_0_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_template_js_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_vue_loader_lib_index_js_vue_loader_options_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_shoppingCart_vue_vue_type_template_id_46e62286___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_template_js_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_shoppingCart_vue_vue_type_template_id_53f80ca5___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../Ksoftware/软件下载/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../Ksoftware/软件下载/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!../../../../../Ksoftware/软件下载/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!../../../../../Ksoftware/软件下载/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!../../../../../Ksoftware/软件下载/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!../../../../../Ksoftware/软件下载/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!./shoppingCart.vue?vue&type=template&id=53f80ca5& */ 79);
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_template_js_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_shoppingCart_vue_vue_type_template_id_53f80ca5___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_17_0_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_template_js_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_vue_loader_lib_index_js_vue_loader_options_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_shoppingCart_vue_vue_type_template_id_46e62286___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_template_js_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_shoppingCart_vue_vue_type_template_id_53f80ca5___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return _Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_template_js_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_shoppingCart_vue_vue_type_template_id_53f80ca5___WEBPACK_IMPORTED_MODULE_0__["recyclableRender"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "components", function() { return _Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_template_js_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_shoppingCart_vue_vue_type_template_id_53f80ca5___WEBPACK_IMPORTED_MODULE_0__["components"]; });
 
 
 
 /***/ }),
 
-/***/ 66:
-/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--17-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!C:/Users/TG/Desktop/web_app/pages/shoppingCart/shoppingCart.vue?vue&type=template&id=46e62286& ***!
-  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
+/***/ 79:
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!E:/uniapp/tgmallnew/web_app/pages/shoppingCart/shoppingCart.vue?vue&type=template&id=53f80ca5& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns, recyclableRender, components */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
+var components
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
 }
+var recyclableRender = false
 var staticRenderFns = []
 render._withStripped = true
 
@@ -81,104 +109,111 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ 67:
+/***/ 80:
 /*!************************************************************************************************!*\
-  !*** C:/Users/TG/Desktop/web_app/pages/shoppingCart/shoppingCart.vue?vue&type=script&lang=js& ***!
+  !*** E:/uniapp/tgmallnew/web_app/pages/shoppingCart/shoppingCart.vue?vue&type=script&lang=js& ***!
   \************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_vue_loader_lib_index_js_vue_loader_options_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_shoppingCart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!./shoppingCart.vue?vue&type=script&lang=js& */ 68);
-/* harmony import */ var _D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_vue_loader_lib_index_js_vue_loader_options_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_shoppingCart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_vue_loader_lib_index_js_vue_loader_options_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_shoppingCart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_vue_loader_lib_index_js_vue_loader_options_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_shoppingCart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_vue_loader_lib_index_js_vue_loader_options_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_shoppingCart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_vue_loader_lib_index_js_vue_loader_options_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_shoppingCart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default.a); 
+/* harmony import */ var _Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_shoppingCart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../Ksoftware/软件下载/HBuilderX/plugins/uniapp-cli/node_modules/babel-loader/lib!../../../../../Ksoftware/软件下载/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!../../../../../Ksoftware/软件下载/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!../../../../../Ksoftware/软件下载/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!../../../../../Ksoftware/软件下载/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!./shoppingCart.vue?vue&type=script&lang=js& */ 81);
+/* harmony import */ var _Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_shoppingCart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_shoppingCart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_shoppingCart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_shoppingCart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_shoppingCart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
-/***/ 68:
-/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!C:/Users/TG/Desktop/web_app/pages/shoppingCart/shoppingCart.vue?vue&type=script&lang=js& ***!
-  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ 81:
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!E:/uniapp/tgmallnew/web_app/pages/shoppingCart/shoppingCart.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var _api = __webpack_require__(/*! ../../apis/api.js */ 29);
+var _vuex = __webpack_require__(/*! vuex */ 16);function _toConsumableArray(arr) {return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread();}function _nonIterableSpread() {throw new TypeError("Invalid attempt to spread non-iterable instance");}function _iterableToArray(iter) {if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);}function _arrayWithoutHoles(arr) {if (Array.isArray(arr)) {for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {arr2[i] = arr[i];}return arr2;}}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default =
 {
   data: function data() {
     return {
       Allselects: false,
       money: '0.00',
-      shop: [
-      { "haveStock": true, "marketPrice": "99", "select": false, "goodsName": "哈哈", "skuName": "1", "skuCount": 1, "skuStock": 200, "commodityFrame": false, "mainImg": "https://p5.ssl.qhimgs1.com/bdr/326__/t01e7473d55942066af.png" },
-      { "haveStock": true, "marketPrice": "133", "select": false, "goodsName": "哈哈", "skuName": "1", "skuCount": 1, "skuStock": 99, "commodityFrame": false, "mainImg": "https://p5.ssl.qhimgs1.com/bdr/326__/t01e7473d55942066af.png" },
-      { "haveStock": false, "marketPrice": "11.9", "select": false, "goodsName": "哈哈", "skuName": "1", "skuCount": 1, "skuStock": 55, "commodityFrame": true, "mainImg": "https://p5.ssl.qhimgs1.com/bdr/326__/t01e7473d55942066af.png" }],
-      //[]
+      shop: [], //[]
       chooseSkuIds: '',
       page: 1,
       repeatedLoading: true,
-      flag: '',
+      pageLoading: false,
+      flag: false,
       ischange: false, //全选是否改变
-      timer: null };
+      timer: null,
+      isloadedend: false };
 
   },
 
   components: {},
   props: {},
+  computed: _objectSpread({},
+  (0, _vuex.mapGetters)('login', {
+    "loginStatus": "get_isLogin",
+    "userInfo": "get_userInfo" })),
+
 
   /**
-              * 生命周期函数--监听页面加载
-              */
-  onLoad: function onLoad(options) {},
+                                     * 生命周期函数--监听页面加载
+                                     */
+  onLoad: function onLoad(options) {
+
+  },
 
   /**
-                                        * 生命周期函数--监听页面初次渲染完成
-                                        */
+      * 生命周期函数--监听页面初次渲染完成
+      */
   onReady: function onReady() {},
 
   /**
@@ -189,74 +224,8 @@ var _default =
     uni.hideShareMenu();
 
     this.pageLoading = false;
-    var that = this;
-    // uni.showLoading({
-    // 	title:"加载中...",
-    // 	mask:true
-    // })
-    this.hidden = false;
-    this.page = 1;
-    //this.shop=[];
-    uni.request({
-      url: getApp().globalData.url1 + getApp().globalData.getShoppingCartList + this.page + '/10/' + getApp().globalData.memId + '/1',
-      data: '',
-      header: {
-        aid: 117 },
-
-      method: 'GET',
-      dataType: 'json',
-      responseType: 'text',
-      success: function success(res) {
-        that.repeatedLoading = true;
-        uni.hideLoading();
-        that.flag = res.data.data.flag;
-        if (res.data.data.skuId_count) {
-          uni.request({
-            url: getApp().globalData.url2 + getApp().globalData.getSkuVoListBySkuIdList,
-            data: {
-              skuId_count: res.data.data.skuId_count },
-
-            header: {
-              aid: 118 },
-
-            method: 'post',
-            dataType: 'json',
-            responseType: 'text',
-            success: function success(res) {
-              if (res.data.data.goodsSkuVoList.length > 0) {
-                for (var i = 0; i < res.data.data.goodsSkuVoList.length; i++) {
-                  var img = getApp().globalData.imgUrl + "/" + res.data.data.goodsSkuVoList[i].mainImg;
-                  res.data.data.goodsSkuVoList[i].mainImg = img;
-                  res.data.data.goodsSkuVoList[i].marketPrice = res.data.data.goodsSkuVoList[i].marketPrice.toFixed(2);
-                  res.data.data.goodsSkuVoList[i].select = false;
-                  if (res.data.data.goodsSkuVoList[i].skuCount >= res.data.data.goodsSkuVoList[i].skuStock) {
-                    res.data.data.goodsSkuVoList[i].skuCount = res.data.data.goodsSkuVoList[i].skuStock;
-                  } else {}
-
-                  res.data.data.goodsSkuVoList[i].haveStock = true;
-
-                  if (res.data.data.goodsSkuVoList[i].skuStock == 0) {
-                    res.data.data.goodsSkuVoList[i].haveStock = false;
-                  } else {}
-
-                  var shop = that.shop;
-                  shop.push(res.data.data.goodsSkuVoList[i]);
-                }
-
-                that.setData({
-                  shop: that.shop,
-                  hidden: true });
-
-              }
-            },
-            fail: function fail(res) {},
-            complete: function complete(res) {} });
-
-        }
-      },
-      fail: function fail(res) {},
-      complete: function complete(res) {} });
-
+    this.shop = [];
+    this.shoppingList();
   },
 
   /**
@@ -290,20 +259,18 @@ var _default =
       */
   onShareAppMessage: function onShareAppMessage() {},
   methods: {
-    commodity_details: function commodity_details(e) {//打开商品详情页
-      var that = this;
-      var select = this.shop;
-      if (!select[e.currentTarget.dataset.hi].commodityFrame) {
-        if (!that.pageLoading) {
-          that.pageLoading = true;
+    commodity_details: function commodity_details(item) {//打开商品详情页
+      console.log(this.pageLoading);
+      if (!item.commodityFrame) {
+        if (!this.pageLoading) {
+          this.pageLoading = true;
           uni.navigateTo({
-            url: '/pages/commodity_details/commodity_details?goodsId=' + select[e.currentTarget.dataset.hi].goodsId });
+            url: '/pages/commodity_details/commodity_details?goodsId=' + item.goodsId });
 
         }
       }
     },
-
-    orderDetails: function orderDetails(e) {//结算
+    orderDetails: function orderDetails() {var _this = this; //结算
       var Settlement = [];
       var chooseSkuIdsList = [];
       var select = this.shop;
@@ -323,7 +290,6 @@ var _default =
           }
         }
       }
-
       if (j == 0) {
         uni.showModal({
           title: '提示',
@@ -334,52 +300,44 @@ var _default =
           title: "加载中...",
           mask: true });
 
-        uni.request({
-          url: getApp().globalData.url3 + getApp().globalData.generatingOrder,
+        (0, _api.uniHttp)({
+          path: getApp().globalData.generatingOrder,
           data: {
-            wxMemId: getApp().globalData.memId,
-            openId: getApp().globalData.openId,
+            wxMemId: this.$store.getters['login/get_userInfo'].id, //this.$store.getters['login/get_userInfo'].id
+            openId: getApp().globalData.openId, // getApp().globalData.openId
             orderSource: getApp().globalData.userType,
             orderVoList: Settlement },
 
           header: {
             aid: 119 },
 
-          method: 'post',
-          dataType: 'json',
-          responseType: 'text',
-          success: function success(res) {
-            uni.request({
-              url: getApp().globalData.url1 + getApp().globalData.deleteShoppingCartByList,
-              data: {
-                memId: getApp().globalData.memId,
-                skuIds: that.chooseSkuIds },
+          method: 'post' }).
+        then(function (res) {
+          console.log(res);
+          (0, _api.uniHttp)({
+            path: getApp().globalData.deleteShoppingCartByList,
+            data: {
+              memId: _this.$store.getters['login/get_userInfo'].id,
+              skuIds: that.chooseSkuIds },
 
-              header: {
-                aid: 116 },
+            header: {
+              aid: 116 },
 
-              method: 'delete',
-              dataType: 'json',
-              responseType: 'text',
-              success: function success(res) {
-                uni.hideLoading();
-              },
-              fail: function fail(res) {},
-              complete: function complete(res) {} });
+            method: 'delete' }).
+          then(function (deleres) {
+            console.log(deleres);
+            uni.hideLoading();
+          });
+          if (!that.pageLoading) {
+            that.pageLoading = true;
+            uni.navigateTo({
+              url: '/pages/orderDetails/orderDetails?parendNo=' + res.parendNo });
 
-            if (!that.pageLoading) {
-              that.pageLoading = true;
-              uni.navigateTo({
-                url: '/pages/orderDetails/orderDetails?parendNo=' + res.data.data.parendNo });
-
-            }
-          },
-          fail: function fail(res) {},
-          complete: function complete(res) {} });
-
+          }
+        });
       }
     },
-    selects: function selects(item) {var _this = this; //选择商品按钮
+    selects: function selects(item) {var _this2 = this; //选择商品按钮
       if (item.haveStock && !item.commodityFrame) {
         item.select = !item.select;
         this.countMoney();
@@ -389,7 +347,7 @@ var _default =
         if (it.haveStock && !it.commodityFrame) {
           if (!it.select) {
             btn = false;
-            _this.Allselects = false;
+            _this2.Allselects = false;
           }
         }
       });
@@ -420,52 +378,55 @@ var _default =
       }
       this.countMoney();
     },
-    countMoney: function countMoney() {var _this2 = this; //合计金额
+    countMoney: function countMoney() {var _this3 = this; //合计金额
       if (this.timer !== null) {
         clearTimeout(this.timer);
       }
       this.timer = setTimeout(function () {
         console.log('r');
         var Cmoney = 0;
-        _this2.shop.map(function (item, index) {
+        _this3.shop.map(function (item, index) {
           if (item.select) {
             Cmoney = Cmoney + item.marketPrice * item.skuCount;
           }
         });
         Cmoney = Cmoney.toFixed(2);
-        _this2.money = Cmoney;
+        _this3.money = Cmoney;
       }, 200);
 
     },
     kuang: function kuang() {},
-    jianBtnTap: function jianBtnTap(item) {//数量减少
+    jianBtnTap: function jianBtnTap(item, indx) {//数量减少
       var that = this;
       if (item.skuCount >= 2) {
         item.skuCount = item.skuCount - 1;
-        this.countMoney();
+        if (item.select) {
+          this.countMoney();
+        }
       } else {
         uni.showModal({
           title: '提示',
           content: '亲，确定删除该商品',
           success: function success(res) {
             if (res.confirm) {
-              uni.request({
-                url: getApp().globalData.url1 + getApp().globalData.deleteShoppingCartById + getApp().globalData.memId + '/' + shop[e.currentTarget.dataset.index].id,
+              (0, _api.uniHttp)({
+                path: getApp().globalData.deleteShoppingCartById + that.$store.getters['login/get_userInfo'].id + '/' + item.id,
                 data: '',
                 header: {
                   aid: 115 },
 
-                method: 'delete',
-                dataType: 'json',
-                responseType: 'text',
-                success: function success(res) {
-                  this.shop = this.shop.splice(e.currentTarget.dataset.index, 1);
-                  that.countMoney();
-                },
-                fail: function fail(res) {},
-                complete: function complete(res) {} });
-
-            } else if (res.cancel) {}
+                method: 'delete' }).
+              then(function (res) {
+                that.shop.splice(indx, 1);
+                if (!that.shop.length) {
+                  that.flag = true;
+                } else {
+                  if (item.select) {
+                    that.countMoney();
+                  }
+                }
+              });
+            }
           } });
 
       }
@@ -474,7 +435,9 @@ var _default =
       var that = this;
       if (item.skuCount < item.skuStock) {
         item.skuCount = item.skuCount + 1;
-        this.countMoney();
+        if (item.select) {
+          this.countMoney();
+        }
       } else {
         uni.showModal({
           title: '提示',
@@ -482,7 +445,7 @@ var _default =
 
       }
     },
-    inputDigit: function inputDigit(e) {
+    inputDigit: function inputDigit(e) {//没有手动输入数量的功能  暂时弃用
       var skuCount = this.shop[e.currentTarget.dataset.index].skuCount;
       var skuStock = this.shop[e.currentTarget.dataset.index].skuStock;
       var that = this;
@@ -496,96 +459,83 @@ var _default =
       } else {
         this.shop[e.currentTarget.dataset.index].skuCount = e.detail.value;
       }
-
       this.countMoney();
     },
-
-    shoppingList: function shoppingList() {
+    shoppingList: function shoppingList() {var _this4 = this; //获取购物车列表
       var that = this;
       uni.showLoading({
         title: "加载中...",
         mask: true });
 
-      uni.request({
-        url: getApp().globalData.url1 + getApp().globalData.getShoppingCartList + this.page + '/10/' + getApp().globalData.memId + '/1',
+      (0, _api.uniHttp)({
+        path: getApp().globalData.getShoppingCartList + this.page + '/10/' + this.$store.getters['login/get_userInfo'].id + '/1',
         data: '',
         header: {
-          aid: 117 },
+          aid: 117 } }).
 
-        method: 'GET',
-        dataType: 'json',
-        responseType: 'text',
-        success: function success(res) {
-          that.repeatedLoading = true;
-          if (res.data.data.skuId_count) {
-            uni.request({
-              url: getApp().globalData.url2 + getApp().globalData.getSkuVoListBySkuIdList,
-              data: {
-                skuId_count: res.data.data.skuId_count },
-
-              header: {
-                aid: 118 },
-
-              method: 'post',
-              dataType: 'json',
-              responseType: 'text',
-              success: function success(res) {
-                if (res.data.data.goodsSkuVoList.length > 0) {
-                  for (var i = 0; i < res.data.data.goodsSkuVoList.length; i++) {
-                    var img = getApp().globalData.imgUrl + "/" + res.data.data.goodsSkuVoList[i].mainImg;
-                    res.data.data.goodsSkuVoList[i].mainImg = img;
-                    res.data.data.goodsSkuVoList[i].marketPrice = res.data.data.goodsSkuVoList[i].marketPrice.toFixed(2);
-                    res.data.data.goodsSkuVoList[i].select = false;
-
-                    if (res.data.data.goodsSkuVoList[i].skuCount >= res.data.data.goodsSkuVoList[i].skuStock) {
-                      res.data.data.goodsSkuVoList[i].skuCount = res.data.data.goodsSkuVoList[i].skuStock;
-                    } else {}
-
-                    res.data.data.goodsSkuVoList[i].haveStock = true;
-
-                    if (res.data.data.goodsSkuVoList[i].skuStock == 0) {
-                      res.data.data.goodsSkuVoList[i].haveStock = false;
-                    } else {}
-
-                    that.shop.push(res.data.data.goodsSkuVoList[i]);
-                  }
-
-                  uni.hideLoading();
-                }
-              },
-              fail: function fail(res) {},
-              complete: function complete(res) {} });
-
+      then(function (result) {
+        console.log(result);
+        that.flag = result.flag;
+        if (Object.keys(result.skuId_count).length) {
+          that.getList(result.skuId_count);
+        } else {
+          uni.hideLoading();
+          if (_this4.page != 1) {
+            that.isloadedend = true;
           }
-        },
-        fail: function fail(res) {},
-        complete: function complete(res) {} });
+        }
+      });
+    },
+    getList: function getList(skuIdCount) {var _this5 = this;
+      (0, _api.uniHttp)({
+        path: getApp().globalData.getSkuVoListBySkuIdList,
+        data: {
+          skuId_count: skuIdCount },
 
+        header: {
+          aid: 118 },
+
+        method: 'post' }).
+      then(function (res) {
+        var goodsSkuVoList = res.goodsSkuVoList;
+        if (goodsSkuVoList.length > 0) {var _this5$shop;
+          goodsSkuVoList.map(function (item, index) {
+            item.mainImg = getApp().globalData.imgUrl + "/" + item.mainImg;
+            item.marketPrice = item.marketPrice.toFixed(2);
+            item.select = false;
+            item.skuCount = item.skuCount >= item.skuStock ? item.skuStock : item.skuCount;
+            item.haveStock = item.skuStock == 0 ? false : true;
+          });
+          (_this5$shop = _this5.shop).push.apply(_this5$shop, _toConsumableArray(res.goodsSkuVoList));
+          uni.hideLoading();
+        }
+        _this5.repeatedLoading = true;
+      });
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
-/***/ 69:
+/***/ 82:
 /*!********************************************************************************************************!*\
-  !*** C:/Users/TG/Desktop/web_app/pages/shoppingCart/shoppingCart.vue?vue&type=style&index=0&lang=css& ***!
+  !*** E:/uniapp/tgmallnew/web_app/pages/shoppingCart/shoppingCart.vue?vue&type=style&index=0&lang=css& ***!
   \********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_vue_loader_lib_loaders_stylePostLoader_js_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_vue_loader_lib_index_js_vue_loader_options_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_shoppingCart_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!./node_modules/mini-css-extract-plugin/dist/loader.js??ref--6-oneOf-1-0!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-1!./node_modules/css-loader??ref--6-oneOf-1-2!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-oneOf-1-3!./node_modules/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!./shoppingCart.vue?vue&type=style&index=0&lang=css& */ 70);
-/* harmony import */ var _D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_vue_loader_lib_loaders_stylePostLoader_js_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_vue_loader_lib_index_js_vue_loader_options_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_shoppingCart_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_vue_loader_lib_loaders_stylePostLoader_js_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_vue_loader_lib_index_js_vue_loader_options_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_shoppingCart_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_vue_loader_lib_loaders_stylePostLoader_js_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_vue_loader_lib_index_js_vue_loader_options_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_shoppingCart_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_vue_loader_lib_loaders_stylePostLoader_js_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_vue_loader_lib_index_js_vue_loader_options_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_shoppingCart_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_vue_loader_lib_loaders_stylePostLoader_js_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_vue_loader_lib_index_js_vue_loader_options_D_Hbuildx_HBuildxOld_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_shoppingCart_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+/* harmony import */ var _Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_shoppingCart_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../Ksoftware/软件下载/HBuilderX/plugins/uniapp-cli/node_modules/mini-css-extract-plugin/dist/loader.js??ref--6-oneOf-1-0!../../../../../Ksoftware/软件下载/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-1!../../../../../Ksoftware/软件下载/HBuilderX/plugins/uniapp-cli/node_modules/css-loader??ref--6-oneOf-1-2!../../../../../Ksoftware/软件下载/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!../../../../../Ksoftware/软件下载/HBuilderX/plugins/uniapp-cli/node_modules/postcss-loader/src??ref--6-oneOf-1-3!../../../../../Ksoftware/软件下载/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!../../../../../Ksoftware/软件下载/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!./shoppingCart.vue?vue&type=style&index=0&lang=css& */ 83);
+/* harmony import */ var _Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_shoppingCart_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_shoppingCart_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_shoppingCart_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_shoppingCart_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_Ksoftware_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_shoppingCart_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
-/***/ 70:
-/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/mini-css-extract-plugin/dist/loader.js??ref--6-oneOf-1-0!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-1!./node_modules/css-loader??ref--6-oneOf-1-2!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-oneOf-1-3!./node_modules/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!C:/Users/TG/Desktop/web_app/pages/shoppingCart/shoppingCart.vue?vue&type=style&index=0&lang=css& ***!
-  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ 83:
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/mini-css-extract-plugin/dist/loader.js??ref--6-oneOf-1-0!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-1!./node_modules/css-loader??ref--6-oneOf-1-2!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!E:/uniapp/tgmallnew/web_app/pages/shoppingCart/shoppingCart.vue?vue&type=style&index=0&lang=css& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -593,5 +543,5 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ })
 
-},[[63,"common/runtime","common/vendor"]]]);
+},[[76,"common/runtime","common/vendor"]]]);
 //# sourceMappingURL=../../../.sourcemap/mp-weixin/pages/shoppingCart/shoppingCart.js.map

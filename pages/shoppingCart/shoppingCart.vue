@@ -4,7 +4,7 @@
   <image src="/static/images/kongdaizi.png" v-if="flag"></image>
   <view v-if="flag">暂无购物车商品</view>
 </view>
-<view class="shopping-box">
+<view class="shopping-box" v-if="!flag">
   <view class="shopping-list" v-for="(item, unique) in shop" :key="unique">
     <image class="shopping-select" src="/static/images/kong.png" @tap="selects(item)"  v-if="!item.select"></image>
     <image class="shopping-select" src="/static/images/gou.png" @tap="selects(item)"  v-if="item.select"></image>
@@ -43,6 +43,7 @@
 
 <script>
 import {uniHttp} from "../../apis/api.js"
+import {mapGetters} from 'vuex'
 export default {
   data() {
     return {
@@ -62,12 +63,17 @@ export default {
 
   components: {},
   props: {},
-
+  computed:{
+  	...mapGetters('login',{
+  		"loginStatus":"get_isLogin",
+  		"userInfo":"get_userInfo"
+  	})
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-	   this.shoppingList();
+	  
   },
 
   /**
@@ -83,6 +89,9 @@ export default {
 	uni.hideShareMenu();
 	// #endif
 	this.pageLoading=false;
+	this.page=1;
+	this.shop=[];
+	this.shoppingList();
   },
 
   /**
@@ -105,7 +114,6 @@ export default {
    */
   onReachBottom: function () {
     if (this.repeatedLoading) {
-		  console.log('ss')
       this.repeatedLoading = false;
       this.page = this.page + 1;
       this.shoppingList();
@@ -129,6 +137,7 @@ export default {
       }
     },
     orderDetails() {//结算
+	  var selectIndexList=[];//选中的下标值集合
       var Settlement = [];
       var chooseSkuIdsList = [];
       var select = this.shop;
@@ -137,6 +146,7 @@ export default {
       for (var i = 0; i < select.length; i++) {
         if (select[i].haveStock) {
           if (select[i].select) {
+			  selectIndexList.push(i);
             j++;
             var choose = {};
             choose.goodsId = select[i].id;
@@ -144,7 +154,7 @@ export default {
             choose.skuQty = select[i].skuCount;
             Settlement.push(choose);
             chooseSkuIdsList.push(choose.skuId);
-             that.chooseSkuIds=chooseSkuIdsList;
+            that.chooseSkuIds=chooseSkuIdsList;
           }
         }
       }
@@ -161,35 +171,39 @@ export default {
 			uniHttp({
 			  path: getApp().globalData.generatingOrder,
 			  data: {
-				wxMemId: getApp().globalData.memId,
-				openId: getApp().globalData.openId,
+				wxMemId:this.$store.getters['login/get_userInfo'].id,//this.$store.getters['login/get_userInfo'].id
+				openId:"",// getApp().globalData.openId
 				orderSource: getApp().globalData.userType,
 				orderVoList: Settlement
 			  },
 			  header: {
-				aid: 119
+				aid: 119,
+				
 			  },
 			  method: 'post',
 			}).then(res=>{
+				console.log(res);
 			   uniHttp({
 			     path:getApp().globalData.deleteShoppingCartByList,
 			     data: {
-			       memId: getApp().globalData.memId,
+			       memId: this.$store.getters['login/get_userInfo'].id,
 			       skuIds: that.chooseSkuIds
 			     },
 			     header: {
-			       aid: 116
+			       aid: 116,
+				  
 			     },
 			     method: 'delete'
 			   }).then(deleres=>{
 				   uni.hideLoading()
+				   if (!that.pageLoading) {
+						that.pageLoading = true;
+						uni.navigateTo({
+						   url: '/pages/orderDetails/orderDetails?parendNo=' + res.parendNo
+						});
+				    }
 			   })
-			   if (!that.pageLoading) {
-					that.pageLoading = true;
-					uni.navigateTo({
-					   url: '/pages/orderDetails/orderDetails?parendNo=' + res.data.data.parendNo
-					});
-			    }
+			   
 			})
         }
     },
@@ -266,10 +280,11 @@ export default {
 				success: function (res) {
 					if (res.confirm) {
 						uniHttp({
-							path: getApp().globalData.deleteShoppingCartById + getApp().globalData.memId + '/' + item.id,
+							path: getApp().globalData.deleteShoppingCartById + that.$store.getters['login/get_userInfo'].id + '/' + item.id,
 							data: '',
 							header: {
-							  aid: 115
+							  aid: 115,
+							  
 							},
 							method: 'delete',
 						}).then(res=>{
@@ -323,16 +338,18 @@ export default {
 			title:"加载中...",
 			mask:true
 		});
+		console.log('show2')
 		uniHttp({
-			path:getApp().globalData.getShoppingCartList + this.page + '/10/' + getApp().globalData.memId + '/1',
-			data: '',
+			path:getApp().globalData.getShoppingCartList + this.page + '/10/' + this.$store.getters['login/get_userInfo'].id + '/1',
 			header: {
 			  aid: 117,
+			  
 			}
         }).then(result=>{
-			that.flag=result.data.data.flag;
-			if (Object.keys(result.data.data.skuId_count).length) {
-				that.getList(result.data.data.skuId_count)
+			console.log(result)
+			that.flag=result.flag;
+			if (Object.keys(result.skuId_count).length) {
+				that.getList(result.skuId_count)
 			}else{
 				uni.hideLoading()
 				if(this.page!=1){
@@ -348,11 +365,12 @@ export default {
 			  skuId_count: skuIdCount
 			},
 			header: {
-			  aid: 118
+			  aid: 118,
+			
 			},
 			method: 'post',
 		}).then(res=>{
-			let goodsSkuVoList=res.data.data.goodsSkuVoList;
+			let goodsSkuVoList=res.goodsSkuVoList;
 			if (goodsSkuVoList.length > 0) {
 				goodsSkuVoList.map((item,index)=>{
 					item.mainImg=getApp().globalData.imgUrl + "/" +item.mainImg;
@@ -361,7 +379,7 @@ export default {
 					item.skuCount=item.skuCount>=item.skuStock?item.skuStock:item.skuCount;
 					item.haveStock=item.skuStock==0?false:true;
 				})
-				this.shop.push(...res.data.data.goodsSkuVoList)
+				this.shop.push(...res.goodsSkuVoList)
 				uni.hideLoading();
 			}
 			this.repeatedLoading = true;

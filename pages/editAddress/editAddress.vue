@@ -2,8 +2,7 @@
 <view>
 	<w-picker 
 	    mode="region"
-	    :defaultVal="addressInfo.checkArr"
-	    :areaCode="addressInfo.checkValue"
+	    :defaultVal="[province, city, county]"
 	    :hideArea="false"
 	    @confirm="onConfirm" 
 	    ref="region" 
@@ -19,7 +18,7 @@
 </view>
 <view class="input-box">
   <view>选择城市</view>
-  <input disabled="true" :value="addressInfo.checkArr[0] + ' ' + addressInfo.checkArr[1] + ' ' + addressInfo.checkArr[2]" @tap="translate"></input>
+  <input disabled="true" :value="province + ' ' + city + ' ' + county" @tap="translate"></input>
   <image src="/static/images/right.png" @tap="translate"></image>
 </view>
 <view class="input-box2">
@@ -37,19 +36,16 @@
 </template>
 
 <script>
-	import wPicker from "@/components/areapicker/w-picker.vue";
+import {uniHttp} from "../../apis/api.js"
+import wPicker from "@/components/areapicker/w-picker.vue";
 export default {
   data(){
     return {
-	  addressInfo: {
-	  		"checkArr":["浙江省", "杭州市", "西湖区"],//地址省市区
-	  		"checkValue":["33", "3301", "330106"]//省市区的地区编码
-	  },
       address: '',
       isDefault: '',
-      province: '',
-      city: 's',
-      county: 's',
+      province: '浙江省',
+      city: '杭州市',
+      county: '西湖区',
       consignee: '',
       phone: '',
       id: '',
@@ -63,36 +59,8 @@ export default {
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-	 // uni.showLoading({
-	 // 		  title:"加载中...",
-	 // 		  mask:true
-	 // });
-    var that = this;
-    uni.request({
-      url: getApp().globalData.url1 + getApp().globalData.getAddressByMemberId + options.id,
-      data: '',
-      header: {
-        aid: 110
-      },
-      method: 'GET',
-      dataType: 'json',
-      responseType: 'text',
-      success: function (res) {
-        if (res.data.data.errorCode == 200) {
-            that.consignee=res.data.data.memberAddrVo.consignee;
-            that.phone=res.data.data.memberAddrVo.phone;
-            that.address=res.data.data.memberAddrVo.address;
-            that.isDefault=res.data.data.memberAddrVo.isDefault;
-            that.province=res.data.data.memberAddrVo.province;
-            that.city=res.data.data.memberAddrVo.city;
-            that.county=res.data.data.memberAddrVo.area;
-            that.id=options.id;
-			uni.hideLoading();
-        }
-      },
-      fail: function (res) {},
-      complete: function (res) {}
-    });
+	this.id=options.id;
+    this.getInitAdress()
   },
 
   /**
@@ -134,8 +102,37 @@ export default {
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {},
+  computed: {
+  	isLogin() {
+  		return this.$store.getters['login/get_isLogin']
+  	}
+  },
   methods: {
-    deleteAddress: function () {
+	getInitAdress:function(){//获取详细信息
+		uni.showLoading({
+			title:"加载中...",
+			mask:true
+		})
+		var that = this;
+		uniHttp({
+			path:'/member/api/memberInternal/getAddressByMemberId/'+this.id,
+			header:{
+				aid:110,
+				
+			}
+		}).then(res=>{
+			this.consignee=res.memberAddrVo.consignee;
+			this.phone=res.memberAddrVo.phone;
+			this.address=res.memberAddrVo.address;
+			this.isDefault=res.memberAddrVo.isDefault;
+			this.province=res.memberAddrVo.province;
+			this.city=res.memberAddrVo.city;
+			this.county=res.memberAddrVo.area;
+			uni.hideLoading()
+		})
+		
+	},
+    deleteAddress: function () {//删除地址
       var that = this;
       uni.showModal({
         title: '提示',
@@ -143,27 +140,35 @@ export default {
         success: function (res) {
           if (res.confirm) {
 			  uni.showLoading({
-			  		  title:"删除中...",
-			  		  mask:true
-			  });
-            uni.request({
-              url: getApp().globalData.url1 + getApp().globalData.deleteAddressByAddrId + that.id,
-              data: '',
-              header: {
-                aid: 112
-              },
-              method: 'delete',
-              dataType: 'json',
-              responseType: 'text',
-              success: function (res) {
-				 uni.hideLoading()
-                uni.navigateBack({
-                  delta: 1
-                });
-              },
-              fail: function (res) {},
-              complete: function (res) {}
-            });
+			  	title:"删除中...",
+				mask:true
+			  })
+			  uniHttp({
+			  	path:'/member/api/memberInternal/deleteAddressByAddrId/'+that.id,
+			  	data:{
+					id:that.$store.getters['login/get_userInfo'].id
+				},
+				header:{
+			  		aid:112,
+					
+			  	},
+				method:"delete"
+			  }).then(res=>{
+				uni.hideLoading()
+			  	uni.showToast({
+			  		icon:'success',
+			  		title: '删除成功',
+			  		duration: 1000,
+			  		complete:function(){
+			  			setTimeout(function(){
+			  				uni.navigateBack({
+			  				    delta:1
+			  				}); 
+			  			},1000)
+			  		}
+			  	})
+			  	
+			  })
           } else if (res.cancel) {}
         }
       });
@@ -180,44 +185,49 @@ export default {
     isDefaultFun: function () {
       this.isDefault=!this.isDefault?this.isDefault=1:this.isDefault=0;
     },
-    conserve: function () {
-		
+    conserve: function () {//保存
       var that = this;
       var myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
       if (this.consignee && myreg.test(this.phone) && this.county && this.address) {
-        uni.showLoading({
-			title:"保存中...",
+		  var params={
+		  	     memSource: getApp().globalData.userType,
+		  	     memId: that.$store.getters['login/get_userInfo'].id,
+		  	     id: that.id,
+		  	     consignee: that.consignee,
+		  	     phone: that.phone,
+		  	     province: that.province,
+		  	     city: that.city,
+		  	     area: that.county,
+		  	     address: that.address,
+		  	     isDefault: that.isDefault
+		  }
+		  uni.showLoading({
+		  	title:"保存中...",
 			mask:true
-		});
-		uni.request({
-          url: getApp().globalData.url1 + getApp().globalData.editAddress,
-          data: {
-            memSource: getApp().globalData.userType,
-            memId: getApp().globalData.memId,
-            id: that.id,
-            consignee: that.consignee,
-            phone: that.phone,
-            province: that.province,
-            city: that.city,
-            area: that.county,
-            address: that.address,
-            isDefault: that.isDefault
-          },
-          header: {
-            aid: 111
-          },
-          method: 'post',
-          dataType: 'json',
-          responseType: 'text',
-          success: function (res) {
-			uni.hideLoading();
-            uni.navigateBack({
-              delta: 1
-            });
-          },
-          fail: function (res) {},
-          complete: function (res) {}
-        });
+		  })
+		  uniHttp({
+		  	path:'/member/api/memberInternal/editAddress',
+		  	header:{
+		  		aid:111,
+				
+		  	},
+			data:params,
+			method: 'post',
+		  }).then(res=>{
+		  	uni.hideLoading();
+			uni.showToast({
+				icon:'success',
+				title: '保存成功',
+				duration: 1000,
+				complete:function(){
+					setTimeout(function(){
+						uni.navigateBack({
+						    delta:1
+						}); 
+					},1000)
+				}
+			});
+		  })
       } else {
         if (!myreg.test(that.phone)) {
           uni.showModal({
@@ -236,11 +246,8 @@ export default {
 	translate:function (e) {
 	  this.$refs.region.show()
 	},
-	onConfirm(areaInfo){
-		this.addressInfo={
-			"checkArr":areaInfo.checkArr,
-			"checkValue":areaInfo.checkValue
-		}
+	onConfirm(areaInfo){//选择省市县
+		[this.province,this.city,this.county]=areaInfo.checkArr;
 	}
   }
 };

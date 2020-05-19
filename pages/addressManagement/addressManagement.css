@@ -18,7 +18,6 @@ page{
   margin-top: 20rpx;
 }
 .addressAll{
-  margin-top: 40rpx;
   background-color: #fff
 }
 .address{
@@ -101,4 +100,7 @@ page{
   line-height: 110rpx;
   text-align: center;
   font-size: 36rpx;
+}
+.mtop20{
+	height: 40rpx;
 }

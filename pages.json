@@ -3,7 +3,8 @@
 		{
 			"path": "pages/jingxuan/jingxuan",
 			"style": {
-				"enablePullDownRefresh":true
+				"enablePullDownRefresh":true,
+				"titleNView":false
 			}
 		},
 		{
@@ -14,7 +15,9 @@
 		},
 		{
 			"path": "pages/xiaoyuexing/xiaoyuexing",
-			"style": {}
+			"style": {
+				"titleNView":false
+			}
 		},
 		{
 			"path": "pages/my/my",
@@ -85,8 +88,8 @@
 		{
 			"path": "pages/h5/h5",
 			"style": {}
-		}
-	    ,{
+		},
+		{
             "path" : "pages/login/login",//登录页面
             "style" : {
 				"app-plus": {
@@ -94,8 +97,8 @@
 				},
 				"navigationStyle":"custom"
 			}
-        }
-        ,{
+        },
+		{
             "path" : "pages/register/register",
             "style" : {
 				"app-plus": {
@@ -139,7 +142,7 @@
 	"globalStyle": {
 		"backgroundTextStyle": "dark",
 		"navigationBarBackgroundColor": "#fff",
-		"navigationBarTitleText": "TimeSee",
+		//"navigationBarTitleText": "TimeSee",
 		"navigationBarTextStyle": "black",
 		"enablePullDownRefresh": false,
 		"onReachBottomDistance": 100
